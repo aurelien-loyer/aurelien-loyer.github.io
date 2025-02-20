@@ -118,13 +118,14 @@ nav a:hover {
 }
 
 .section a, .project-detail a {
-    color: #3da9fc; /* Bleu clair */
+    color: #8b9bb4;
     text-decoration: none;
     transition: color 0.3s ease;
+    background-color: #3da9fc;
 }
 
 .section a:hover, .project-detail a:hover {
-    color: #2a7ebf; /* Bleu plus foncé au survol */
+    background-color: #2a7ebf; /* Bleu plus foncé au survol */
 }
 
 /* Projets */
