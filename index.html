@@ -9,12 +9,14 @@
 </head>
 <body>
 
+    <!-- Header -->
     <header>
         <h1>Aurélien Loyer</h1>
         <p>Étudiant Epitech Réunion | Développeur en devenir</p>
         <a href="cv_loyeraurelien.pdf" download="cv_loyeraurelien.pdf" class="download-cv">Télécharger mon CV</a>
     </header>
 
+    <!-- Navigation Bar -->
     <nav id="navbar">
         <a href="#about">À propos</a>
         <a href="#skills">Compétences</a>
@@ -22,13 +24,16 @@
         <a href="#contact">Contact</a>
     </nav>
 
+    <!-- Main Content -->
     <div class="container">
+        <!-- About Section -->
         <section id="about" class="section">
             <h2>À propos de moi</h2>
             <p>Bonjour ! Je m'appelle Aurélien Loyer, étudiant en informatique à Epitech Réunion. Passionné par le développement logiciel et les nouvelles technologies, je suis constamment à la recherche de nouveaux défis pour approfondir mes connaissances et améliorer mes compétences.</p>
             <p>Actuellement, je me spécialise dans la programmation en C et Python, tout en explorant le développement web et les bonnes pratiques de gestion de projet.</p>
         </section>
 
+        <!-- Skills Section -->
         <section id="skills" class="section">
             <h2>Compétences</h2>
             <ul>
@@ -39,26 +44,36 @@
             </ul>
         </section>
 
+        <!-- Projects Section -->
         <section id="projects" class="section">
             <h2>Projets</h2>
+            <!-- Mini Shell Project -->
             <div class="project">
                 <h3>mini_shell (C)</h3>
                 <p>Un shell simplifié en C, capable d'exécuter des commandes de base, de gérer certains Builtin comme CD, ENV, UNSETENV, SETENV. Ce projet m'a permis de comprendre le fonctionnement des shells et des processus sous Unix.</p>
+                <a href="mini_shell.html" class="learn-more">En savoir plus</a>
             </div>
+            <!-- My Radar Project -->
             <div class="project">
                 <h3>my_radar (CSFML)</h3>
                 <p>Un simulateur de contrôle aérien utilisant la bibliothèque CSFML. Ce projet inclut la gestion d'avions, de tours de contrôle, et la détection de collisions en temps réel.</p>
+                <a href="my_radar.html" class="learn-more">En savoir plus</a>
             </div>
+            <!-- Organized Project -->
             <div class="project">
                 <h3>organized (C)</h3>
                 <p>Un programme en C pour organiser et trier des données selon des règles prédéfinies. Ce projet m'a permis de travailler sur la manipulation de données.</p>
+                <a href="organized.html" class="learn-more">En savoir plus</a>
             </div>
+            <!-- 105demography Project -->
             <div class="project">
                 <h3>105demography (PYTHON)</h3>
                 <p>Un projet d'analyse démographique en Python, utilisant des données statistiques pour prédire l'évolution de la population. Ce projet m'a initié à l'analyse de données.</p>
+                <a href="105demography.html" class="learn-more">En savoir plus</a>
             </div>
         </section>
 
+        <!-- Contact Section -->
         <section id="contact" class="section">
             <h2>Contact</h2>
             <p>Email : <a href="mailto:aurelien.loyer@epitech.eu">aurelien.loyer@epitech.eu</a></p>
@@ -67,11 +82,14 @@
         </section>
     </div>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Aurélien Loyer. Tous droits réservés.</p>
     </footer>
 
+    <!-- JavaScript for Smooth Scroll and Sticky Navbar -->
     <script>
+        // Smooth Scroll
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -81,14 +99,14 @@
             });
         });
 
+        // Sticky Navbar
         window.onscroll = function() {myFunction()};
-
         var navbar = document.getElementById("navbar");
         var sticky = navbar.offsetTop;
 
         function myFunction() {
             if (window.pageYOffset >= sticky) {
-                navbar.classList.add("sticky")
+                navbar.classList.add("sticky");
             } else {
                 navbar.classList.remove("sticky");
             }

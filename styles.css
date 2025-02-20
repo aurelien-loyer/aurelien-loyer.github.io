@@ -32,7 +32,7 @@ header p {
     color: #b0b0b0;
 }
 
-.download-cv {
+.download-cv, .back-home, .learn-more {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
@@ -44,7 +44,7 @@ header p {
     transition: background-color 0.3s ease;
 }
 
-.download-cv:hover {
+.download-cv:hover, .back-home:hover, .learn-more:hover {
     background-color: #16a085;
 }
 
@@ -82,11 +82,11 @@ nav a:hover {
     border-radius: 8px;
 }
 
-.section {
+.section, .project-detail {
     margin-bottom: 40px;
 }
 
-.section h2 {
+.section h2, .project-detail h2 {
     font-size: 2rem;
     color: #1abc9c;
     margin-bottom: 20px;
@@ -94,30 +94,30 @@ nav a:hover {
     padding-bottom: 10px;
 }
 
-.section p {
+.section p, .project-detail p {
     font-size: 1.1rem;
     line-height: 1.8;
     color: #e0e0e0;
 }
 
-.section ul {
+.section ul, .project-detail ul {
     list-style-type: none;
     padding-left: 20px;
 }
 
-.section ul li {
+.section ul li, .project-detail ul li {
     font-size: 1.1rem;
     margin-bottom: 10px;
     color: #e0e0e0;
 }
 
-.section a {
+.section a, .project-detail a {
     color: #3498db;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.section a:hover {
+.section a:hover, .project-detail a:hover {
     color: #2980b9;
 }
 
