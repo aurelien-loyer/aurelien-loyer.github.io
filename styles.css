@@ -118,13 +118,13 @@ nav a:hover {
 }
 
 .section a, .project-detail a {
-    color: #000000;
+    color: white;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .section a:hover, .project-detail a:hover {
-    color: #4b4b4b;
+    color: #ffffff;
 }
 
 /* Projets */
