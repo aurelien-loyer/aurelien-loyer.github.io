@@ -125,6 +125,7 @@ nav a:hover {
 
 .section a:hover, .project-detail a:hover {
     color: #ffffff;
+    background-color: #8b9bb4;
 }
 
 /* Projets */
