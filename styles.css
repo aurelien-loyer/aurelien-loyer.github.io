@@ -7,8 +7,8 @@
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    background-color: #1a1a1a; /* Fond légèrement plus clair que le noir pur */
-    color: #f5f5f5; /* Texte presque blanc pour un meilleur contraste */
+    background-color: #121826; /* Bleu nuit */
+    color: #d0d7e3; /* Gris bleuté clair */
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
@@ -16,8 +16,8 @@ body {
 
 /* Header */
 header {
-    background-color: #0d0d0d; /* Noir profond */
-    color: #f5f5f5; /* Texte clair */
+    background-color: #0d1117; /* Noir bleuté profond */
+    color: #d0d7e3; /* Texte clair */
     padding: 50px 20px;
     text-align: center;
 }
@@ -25,12 +25,12 @@ header {
 header h1 {
     font-size: 2.8rem;
     margin-bottom: 10px;
-    color: #4db6ac; /* Turquoise clair */
+    color: #3da9fc; /* Bleu clair éclatant */
 }
 
 header p {
     font-size: 1.2rem;
-    color: #b0b0b0; /* Gris clair */
+    color: #8b9bb4; /* Gris bleuté */
 }
 
 /* Boutons */
@@ -38,8 +38,8 @@ header p {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #4db6ac; /* Turquoise clair */
-    color: #0d0d0d; /* Texte sombre */
+    background-color: #3da9fc; /* Bleu clair */
+    color: #ffffff; /* Texte blanc */
     text-decoration: none;
     font-size: 1rem;
     border-radius: 5px;
@@ -47,24 +47,24 @@ header p {
 }
 
 .download-cv:hover, .back-home:hover, .learn-more:hover {
-    background-color: #26a69a; /* Turquoise plus foncé au survol */
-    transform: scale(1.05); /* Légère animation au survol */
+    background-color: #2a7ebf; /* Bleu plus foncé au survol */
+    transform: scale(1.05);
 }
 
 /* Barre de navigation */
 nav {
     display: flex;
     justify-content: center;
-    background-color: #0d0d0d; /* Noir profond */
+    background-color: #0d1117; /* Noir bleuté profond */
     padding: 10px 0;
-    border-bottom: 1px solid #333; /* Bordure grise */
+    border-bottom: 1px solid #1e293b; /* Bordure bleu-gris */
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 nav a {
-    color: #f5f5f5; /* Texte clair */
+    color: #d0d7e3; /* Texte clair */
     text-decoration: none;
     padding: 10px 20px;
     font-size: 1rem;
@@ -72,8 +72,8 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #4db6ac; /* Turquoise clair */
-    color: #0d0d0d; /* Texte sombre */
+    background-color: #3da9fc; /* Bleu clair */
+    color: #121826; /* Texte sombre */
     border-radius: 4px;
 }
 
@@ -82,7 +82,7 @@ nav a:hover {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background-color: #262626; /* Gris foncé */
+    background-color: #1c2433; /* Bleu-gris foncé */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
 }
@@ -94,16 +94,16 @@ nav a:hover {
 
 .section h2, .project-detail h2 {
     font-size: 2rem;
-    color: #4db6ac; /* Turquoise clair */
+    color: #3da9fc; /* Bleu clair */
     margin-bottom: 20px;
-    border-bottom: 2px solid #4db6ac; /* Bordure turquoise */
+    border-bottom: 2px solid #3da9fc;
     padding-bottom: 10px;
 }
 
 .section p, .project-detail p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #f5f5f5; /* Texte clair */
+    color: #d0d7e3; /* Texte clair */
 }
 
 .section ul, .project-detail ul {
@@ -114,17 +114,18 @@ nav a:hover {
 .section ul li, .project-detail ul li {
     font-size: 1.1rem;
     margin-bottom: 10px;
-    color: #f5f5f5; /* Texte clair */
+    color: #d0d7e3; /* Texte clair */
 }
 
 .section a, .project-detail a {
-    color: #4db6ac; /* Turquoise clair */
+    color: white;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .section a:hover, .project-detail a:hover {
-    color: #26a69a; /* Turquoise plus foncé au survol */
+    color: #ffffff;
+    background-color: #8b9bb4;
 }
 
 /* Projets */
@@ -134,25 +135,25 @@ nav a:hover {
 
 .project h3 {
     font-size: 1.4rem;
-    color: #4db6ac; /* Turquoise clair */
+    color: #3da9fc;
     margin-bottom: 10px;
 }
 
 .project p {
     font-size: 1rem;
-    color: #b0b0b0; /* Gris clair */
+    color: #8b9bb4; /* Gris bleuté */
 }
 
 /* Footer */
 footer {
-    background-color: #0d0d0d; /* Noir profond */
-    color: #f5f5f5; /* Texte clair */
+    background-color: #0d1117; /* Noir bleuté profond */
+    color: #d0d7e3; /* Texte clair */
     text-align: center;
     padding: 15px;
     position: fixed;
     bottom: 0;
     width: 100%;
-    border-top: 1px solid #333; /* Bordure grise */
+    border-top: 1px solid #1e293b; /* Bordure bleu-gris */
 }
 
 footer p {
