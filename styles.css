@@ -7,16 +7,17 @@
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    background-color: #1e1e1e;
-    color: #bebebe;
+    background-color: #1e1e1e; /* Fond sombre */
+    color: #e0e0e0; /* Texte clair pour un bon contraste */
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
 }
 
+/* Header */
 header {
-    background-color: #121212;
-    color: #bebebe;
+    background-color: #121212; /* Noir profond */
+    color: #e0e0e0; /* Texte clair */
     padding: 50px 20px;
     text-align: center;
 }
@@ -24,44 +25,46 @@ header {
 header h1 {
     font-size: 2.8rem;
     margin-bottom: 10px;
-    color: #1abc9c;
+    color: #1abc9c; /* Vert turquoise */
 }
 
 header p {
     font-size: 1.2rem;
-    color: #b0b0b0;
+    color: #b0b0b0; /* Gris clair */
 }
 
+/* Boutons */
 .download-cv, .back-home, .learn-more {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #1abc9c;
-    color: #bebebe;
+    background-color: #1abc9c; /* Vert turquoise */
+    color: #ffffff; /* Texte blanc */
     text-decoration: none;
     font-size: 1rem;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .download-cv:hover, .back-home:hover, .learn-more:hover {
-    background-color: #16a085;
+    background-color: #16a085; /* Vert plus foncé au survol */
+    transform: scale(1.05); /* Légère animation au survol */
 }
 
+/* Barre de navigation */
 nav {
     display: flex;
     justify-content: center;
-    background-color: #121212;
+    background-color: #121212; /* Noir profond */
     padding: 10px 0;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #333; /* Bordure grise */
     position: sticky;
     top: 0;
     z-index: 1000;
-    color: #bebebe;
 }
 
 nav a {
-    color: #bebebe;
+    color: #e0e0e0; /* Texte clair */
     text-decoration: none;
     padding: 10px 20px;
     font-size: 1rem;
@@ -69,36 +72,38 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #1abc9c;
-    color: #121212;
+    background-color: #1abc9c; /* Vert turquoise */
+    color: #121212; /* Texte sombre */
     border-radius: 4px;
 }
 
+/* Contenu principal */
 .container {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background-color: #252525;
+    background-color: #252525; /* Gris foncé */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
 }
 
+/* Sections */
 .section, .project-detail {
     margin-bottom: 40px;
 }
 
 .section h2, .project-detail h2 {
     font-size: 2rem;
-    color: #1abc9c;
+    color: #1abc9c; /* Vert turquoise */
     margin-bottom: 20px;
-    border-bottom: 2px solid #1abc9c;
+    border-bottom: 2px solid #1abc9c; /* Bordure verte */
     padding-bottom: 10px;
 }
 
 .section p, .project-detail p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #bebebe;
+    color: #e0e0e0; /* Texte clair */
 }
 
 .section ul, .project-detail ul {
@@ -109,43 +114,45 @@ nav a:hover {
 .section ul li, .project-detail ul li {
     font-size: 1.1rem;
     margin-bottom: 10px;
-    color: #bebebe;
+    color: #e0e0e0; /* Texte clair */
 }
 
 .section a, .project-detail a {
-    color: #bebebe;
+    color: #1abc9c; /* Vert turquoise */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .section a:hover, .project-detail a:hover {
-    color: #bebebe;
+    color: #16a085; /* Vert plus foncé au survol */
 }
 
+/* Projets */
 .project {
     margin-bottom: 30px;
 }
 
 .project h3 {
     font-size: 1.4rem;
-    color: #1abc9c;
+    color: #1abc9c; /* Vert turquoise */
     margin-bottom: 10px;
 }
 
 .project p {
     font-size: 1rem;
-    color: #bebebe;
+    color: #b0b0b0; /* Gris clair */
 }
 
+/* Footer */
 footer {
-    background-color: #121212;
-    color: #bebebe;
+    background-color: #121212; /* Noir profond */
+    color: #e0e0e0; /* Texte clair */
     text-align: center;
     padding: 15px;
     position: fixed;
     bottom: 0;
     width: 100%;
-    border-top: 1px solid #333;
+    border-top: 1px solid #333; /* Bordure grise */
 }
 
 footer p {
