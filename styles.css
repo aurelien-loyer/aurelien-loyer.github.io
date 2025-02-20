@@ -125,8 +125,7 @@ nav a:hover {
 }
 
 .section a:hover, .project-detail a:hover {
-    background-color: #2a7ebf; /* Bleu plus foncé au survol */
-    color: #000000;
+    color: #000000; /* Bleu plus foncé au survol */
 }
 
 /* Projets */
