@@ -8,7 +8,7 @@ body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     background-color: #1e1e1e;
-    color: #e0e0e0;
+    color: #bebebe;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
@@ -16,7 +16,7 @@ body {
 
 header {
     background-color: #121212;
-    color: #ffffff;
+    color: #bebebe;
     padding: 50px 20px;
     text-align: center;
 }
@@ -37,7 +37,7 @@ header p {
     margin-top: 10px;
     padding: 10px 20px;
     background-color: #1abc9c;
-    color: #ffffff;
+    color: #bebebe;
     text-decoration: none;
     font-size: 1rem;
     border-radius: 5px;
@@ -57,10 +57,11 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
+    color: #bebebe;
 }
 
 nav a {
-    color: #e0e0e0;
+    color: #bebebe;
     text-decoration: none;
     padding: 10px 20px;
     font-size: 1rem;
@@ -97,7 +98,7 @@ nav a:hover {
 .section p, .project-detail p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #e0e0e0;
+    color: #bebebe;
 }
 
 .section ul, .project-detail ul {
@@ -108,7 +109,7 @@ nav a:hover {
 .section ul li, .project-detail ul li {
     font-size: 1.1rem;
     margin-bottom: 10px;
-    color: #e0e0e0;
+    color: #bebebe;
 }
 
 .section a, .project-detail a {
@@ -133,12 +134,12 @@ nav a:hover {
 
 .project p {
     font-size: 1rem;
-    color: #b0b0b0;
+    color: #bebebe;
 }
 
 footer {
     background-color: #121212;
-    color: #e0e0e0;
+    color: #bebebe;
     text-align: center;
     padding: 15px;
     position: fixed;
