@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurélien Loyer - Étudiant Epitech</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body>
-
-    <header>
-        <h1>Aurélien Loyer</h1>
-        <p>Étudiant Epitech Réunion | Développeur en devenir</p>
-        <a href="cv_loyeraurelien.pdf" download="cv_loyeraurelien.pdf" class="download-cv">Télécharger mon CV</a>
-    </header>
 
     <nav>
         <a href="#about">À propos</a>
@@ -21,20 +20,23 @@
         <a href="#contact">Contact</a>
     </nav>
 
+    <header>
+        <h1>Aurélien Loyer</h1>
+        <p>Étudiant Epitech Réunion | Développeur en devenir</p>
+        <a href="cv_loyeraurelien.pdf" download="cv_loyeraurelien.pdf" class="download-cv">Télécharger mon CV</a>
+    </header>
+
     <div class="container">
         <section id="about" class="section">
             <h2>À propos de moi</h2>
-            <p>Bonjour ! Je m'appelle Aurélien Loyer, étudiant en informatique à Epitech Réunion. Passionné par le développement logiciel et les nouvelles technologies, je suis constamment à la recherche de nouveaux défis pour approfondir mes connaissances et améliorer mes compétences.</p>
-            <p>Actuellement, je me spécialise dans la programmation en C et Python, tout en explorant le développement web et les bonnes pratiques de gestion de projet.</p>
+            <p>Bonjour ! Je m'appelle Aurélien Loyer, étudiant en informatique à Epitech Réunion...</p>
         </section>
 
         <section id="skills" class="section">
             <h2>Compétences</h2>
             <ul>
-                <li><strong>Langages de programmation :</strong> C, Python, HTML, CSS</li>
-                <li><strong>Outils de développement :</strong> Git, GitHub, Visual Studio Code</li>
-                <li><strong>Systèmes d'exploitation :</strong> Linux (Ubuntu), Windows</li>
-                <li><strong>Soft skills :</strong> Travail d'équipe, résolution de problèmes, gestion du temps</li>
+                <li><strong>Langages :</strong> C, Python, HTML, CSS</li>
+                <li><strong>Outils :</strong> Git, GitHub, VS Code</li>
             </ul>
         </section>
 
@@ -42,27 +44,13 @@
             <h2>Projets</h2>
             <div class="project">
                 <h3>mini_shell (C)</h3>
-                <p>Un shell simplifié en C, capable d'exécuter des commandes de base, de gérer certains Builtin comme CD, ENV, UNSETENV, SETENV. Ce projet m'a permis de comprendre le fonctionnement des shells et des processus sous Unix.</p>
-            </div>
-            <div class="project">
-                <h3>my_radar (CSFML)</h3>
-                <p>Un simulateur de contrôle aérien utilisant la bibliothèque CSFML. Ce projet inclut la gestion d'avions, de tours de contrôle, et la détection de collisions en temps réel.</p>
-            </div>
-            <div class="project">
-                <h3>organized (C)</h3>
-                <p>Un programme en C pour organiser et trier des données selon des règles prédéfinies. Ce projet m'a permis de travailler sur la manipulation de données.</p>
-            </div>
-            <div class="project">https://aurelien-loyer.github.io/
-                <h3>105demography (PYTHON)</h3>
-                <p>Un projet d'analyse démographique en Python, utilisant des données statistiques pour prédire l'évolution de la population. Ce projet m'a initié à l'analyse de données.</p>
+                <p>Un shell simplifié en C...</p>
             </div>
         </section>
 
         <section id="contact" class="section">
             <h2>Contact</h2>
             <p>Email : <a href="mailto:aurelien.loyer@epitech.eu">aurelien.loyer@epitech.eu</a></p>
-            <p>LinkedIn : <a href="https://www.linkedin.com/in/aurelien-loyer-epi/" target="_blank">Aurélien Loyer</a></p>
-            <p>Numéro de Téléphone (Réunion) : <a href="tel:+262692010293">0692 01 02 93</a></p>
         </section>
     </div>
 
@@ -70,5 +58,18 @@
         <p>&copy; 2025 Aurélien Loyer. Tous droits réservés.</p>
     </footer>
 
+    <script>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 10,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
