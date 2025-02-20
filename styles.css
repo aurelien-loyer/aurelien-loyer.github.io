@@ -57,11 +57,11 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
-    color: #bebebe;
+    color: #333;
 }
 
 nav a {
-    color: #333;
+    color: #bebebe;
     text-decoration: none;
     padding: 10px 20px;
     font-size: 1rem;
