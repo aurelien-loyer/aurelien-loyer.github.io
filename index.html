@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurélien Loyer - Étudiant Epitech</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -14,7 +15,7 @@
         <a href="cv_loyeraurelien.pdf" download="cv_loyeraurelien.pdf" class="download-cv">Télécharger mon CV</a>
     </header>
 
-    <nav>
+    <nav id="navbar">
         <a href="#about">À propos</a>
         <a href="#skills">Compétences</a>
         <a href="#projects">Projets</a>
@@ -52,7 +53,7 @@
                 <h3>organized (C)</h3>
                 <p>Un programme en C pour organiser et trier des données selon des règles prédéfinies. Ce projet m'a permis de travailler sur la manipulation de données.</p>
             </div>
-            <div class="project">https://aurelien-loyer.github.io/
+            <div class="project">
                 <h3>105demography (PYTHON)</h3>
                 <p>Un projet d'analyse démographique en Python, utilisant des données statistiques pour prédire l'évolution de la population. Ce projet m'a initié à l'analyse de données.</p>
             </div>
@@ -69,6 +70,30 @@
     <footer>
         <p>&copy; 2025 Aurélien Loyer. Tous droits réservés.</p>
     </footer>
+
+    <script>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        window.onscroll = function() {myFunction()};
+
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        }
+    </script>
 
 </body>
 </html>

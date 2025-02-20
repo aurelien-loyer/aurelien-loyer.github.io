@@ -5,12 +5,13 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     background-color: #1e1e1e;
     color: #e0e0e0;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 header {
@@ -53,6 +54,9 @@ nav {
     background-color: #121212;
     padding: 10px 0;
     border-bottom: 1px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 nav a {
