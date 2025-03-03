@@ -118,13 +118,13 @@ nav a:hover {
 }
 
 .section a, .project-detail a {
-    color: #000000; /* Texte blanc */
+    color: #7c7c7c; /* Texte gris */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .section a:hover, .project-detail a:hover {
-    color: #4e4e4e; /* Texte noir */
+    color: #000000; /* Texte noir */
     background-color: #ffffff; /* Fond blanc */
 }
 
@@ -141,7 +141,7 @@ nav a:hover {
 
 .project p {
     font-size: 1rem;
-    color: #cccccc; /* Texte gris clair */
+    color: #ffffff; /* Texte gris clair */
 }
 
 /* Footer */
