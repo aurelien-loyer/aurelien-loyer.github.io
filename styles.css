@@ -64,7 +64,7 @@ nav {
 }
 
 nav a {
-    color: #ffffff; /* Texte blanc */
+    color: #000000; /* Texte noir */
     text-decoration: none;
     padding: 10px 20px;
     font-size: 1rem;
