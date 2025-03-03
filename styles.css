@@ -48,6 +48,7 @@ header p {
 
 .download-cv:hover, .back-home:hover, .learn-more:hover {
     background-color: #e0e0e0; /* Gris clair au survol */
+    color: #000000;
     transform: scale(1.05);
 }
 
