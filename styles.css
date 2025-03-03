@@ -7,8 +7,8 @@
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    background-color: #000000; /* Noir profond */
-    color: #ffffff; /* Texte blanc */
+    background-color: #ffffff; /* Fond blanc */
+    color: #333333; /* Texte sombre */
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
@@ -38,8 +38,8 @@ header p {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #ffffff; /* Blanc */
-    color: #000000; /* Texte noir */
+    background-color: #000000; /* Noir */
+    color: #ffffff; /* Texte blanc */
     text-decoration: none;
     font-size: 1rem;
     border-radius: 5px;
@@ -47,7 +47,7 @@ header p {
 }
 
 .download-cv:hover, .back-home:hover, .learn-more:hover {
-    background-color: #e0e0e0; /* Gris clair au survol */
+    background-color: #333333; /* Gris foncé au survol */
     transform: scale(1.05);
 }
 
@@ -57,14 +57,14 @@ nav {
     justify-content: center;
     background-color: #000000; /* Noir */
     padding: 10px 0;
-    border-bottom: 1px solid #333333; /* Bordure gris foncé */
+    border-bottom: 1px solid #e0e0e0; /* Bordure grise */
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 nav a {
-    color: #000000; /* Texte noir */
+    color: #ffffff; /* Texte blanc */
     text-decoration: none;
     padding: 10px 20px;
     font-size: 1rem;
@@ -72,8 +72,8 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #ffffff; /* Blanc */
-    color: #000000; /* Texte noir */
+    background-color: #333333; /* Gris foncé */
+    color: #ffffff; /* Texte blanc */
     border-radius: 4px;
 }
 
@@ -82,8 +82,8 @@ nav a:hover {
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background-color: #111111; /* Noir légèrement plus clair */
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Ombre légère */
+    background-color: #ffffff; /* Fond blanc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
@@ -94,16 +94,16 @@ nav a:hover {
 
 .section h2, .project-detail h2 {
     font-size: 2rem;
-    color: #ffffff; /* Texte blanc */
+    color: #000000; /* Noir */
     margin-bottom: 20px;
-    border-bottom: 2px solid #ffffff; /* Bordure blanche */
+    border-bottom: 2px solid #000000;
     padding-bottom: 10px;
 }
 
 .section p, .project-detail p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #cccccc; /* Texte gris clair */
+    color: #333333; /* Texte sombre */
 }
 
 .section ul, .project-detail ul {
@@ -114,18 +114,17 @@ nav a:hover {
 .section ul li, .project-detail ul li {
     font-size: 1.1rem;
     margin-bottom: 10px;
-    color: #cccccc; /* Texte gris clair */
+    color: #333333; /* Texte sombre */
 }
 
 .section a, .project-detail a {
-    color: #ffffff; /* Texte blanc */
+    color: #000000; /* Noir */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .section a:hover, .project-detail a:hover {
-    color: #000000; /* Texte noir */
-    background-color: #ffffff; /* Fond blanc */
+    color: #555555; /* Gris foncé */
 }
 
 /* Projets */
@@ -135,13 +134,13 @@ nav a:hover {
 
 .project h3 {
     font-size: 1.4rem;
-    color: #ffffff; /* Texte blanc */
+    color: #000000; /* Noir */
     margin-bottom: 10px;
 }
 
 .project p {
     font-size: 1rem;
-    color: #cccccc; /* Texte gris clair */
+    color: #555555; /* Gris foncé */
 }
 
 /* Footer */
@@ -153,7 +152,7 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    border-top: 1px solid #333333; /* Bordure gris foncé */
+    border-top: 1px solid #e0e0e0; /* Bordure grise */
 }
 
 footer p {
