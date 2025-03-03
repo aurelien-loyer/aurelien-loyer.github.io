@@ -1,4 +1,3 @@
-/* Reset général */
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +7,8 @@
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    background-color: #000000; /* Noir pur */
-    color: #f5f5f5; /* Blanc très clair */
+    background-color: #000000; /* Noir profond */
+    color: #ffffff; /* Texte blanc */
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
@@ -17,8 +16,8 @@ body {
 
 /* Header */
 header {
-    background-color: #0a0a0a; /* Noir légerement adouci */
-    color: #f5f5f5;
+    background-color: #000000; /* Noir */
+    color: #ffffff; /* Texte blanc */
     padding: 50px 20px;
     text-align: center;
 }
@@ -26,12 +25,12 @@ header {
 header h1 {
     font-size: 2.8rem;
     margin-bottom: 10px;
-    color: #ffffff;
+    color: #ffffff; /* Texte blanc */
 }
 
 header p {
     font-size: 1.2rem;
-    color: #b3b3b3;
+    color: #cccccc; /* Gris clair */
 }
 
 /* Boutons */
@@ -39,8 +38,8 @@ header p {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #ffffff; /* Blanc pur */
-    color: #000000; /* Noir pur */
+    background-color: #ffffff; /* Blanc */
+    color: #000000; /* Texte noir */
     text-decoration: none;
     font-size: 1rem;
     border-radius: 5px;
@@ -48,94 +47,116 @@ header p {
 }
 
 .download-cv:hover, .back-home:hover, .learn-more:hover {
-    background-color: #b3b3b3;
-    color: #000000;
+    background-color: #e0e0e0; /* Gris clair au survol */
     transform: scale(1.05);
 }
 
-/* Navigation */
+/* Barre de navigation */
 nav {
     display: flex;
     justify-content: center;
-    background-color: #0a0a0a;
+    background-color: #000000; /* Noir */
     padding: 10px 0;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #333333; /* Bordure gris foncé */
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 nav a {
-    color: #f5f5f5;
+    color: #ffffff; /* Texte blanc */
     text-decoration: none;
     padding: 10px 20px;
     font-size: 1rem;
-    transition: color 0.3s ease, background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 nav a:hover {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #ffffff; /* Blanc */
+    color: #000000; /* Texte noir */
     border-radius: 4px;
 }
 
 /* Contenu principal */
 .container {
-    max-width: 900px;
+    max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background-color: #111111;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: #111111; /* Noir légèrement plus clair */
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Ombre légère */
     border-radius: 8px;
 }
 
-.section h2 {
+/* Sections */
+.section, .project-detail {
+    margin-bottom: 40px;
+}
+
+.section h2, .project-detail h2 {
     font-size: 2rem;
-    color: #ffffff;
+    color: #ffffff; /* Texte blanc */
     margin-bottom: 20px;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff; /* Bordure blanche */
     padding-bottom: 10px;
 }
 
-.section p {
+.section p, .project-detail p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #e0e0e0;
+    color: #cccccc; /* Texte gris clair */
 }
 
-.section a {
-    color: #ffffff;
+.section ul, .project-detail ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.section ul li, .project-detail ul li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #cccccc; /* Texte gris clair */
+}
+
+.section a, .project-detail a {
+    color: #ffffff; /* Texte blanc */
     text-decoration: none;
-    border-bottom: 1px solid #ffffff;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
+    transition: color 0.3s ease;
 }
 
-.section a:hover {
-    color: #b3b3b3;
-    border-bottom: 1px solid #b3b3b3;
+.section a:hover, .project-detail a:hover {
+    color: #000000; /* Texte noir */
+    background-color: #ffffff; /* Fond blanc */
+}
+
+/* Projets */
+.project {
+    margin-bottom: 30px;
+}
+
+.project h3 {
+    font-size: 1.4rem;
+    color: #ffffff; /* Texte blanc */
+    margin-bottom: 10px;
+}
+
+.project p {
+    font-size: 1rem;
+    color: #cccccc; /* Texte gris clair */
 }
 
 /* Footer */
 footer {
-    background-color: #0a0a0a;
-    color: #b3b3b3;
+    background-color: #000000; /* Noir */
+    color: #ffffff; /* Texte blanc */
     text-align: center;
     padding: 15px;
     position: fixed;
     bottom: 0;
     width: 100%;
-    border-top: 1px solid #333;
+    border-top: 1px solid #333333; /* Bordure gris foncé */
 }
 
 footer p {
     font-size: 0.9rem;
-}
-
-/* Animations subtiles */
-.section, .project {
-    transition: transform 0.3s ease;
-}
-
-.section:hover, .project:hover {
-    transform: translateY(-5px);
+    margin: 0;
 }
