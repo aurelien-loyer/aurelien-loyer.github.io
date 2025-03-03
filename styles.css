@@ -1,3 +1,4 @@
+/* Reset général */
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +8,8 @@
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    background-color: #121826; /* Bleu nuit */
-    color: #d0d7e3; /* Gris bleuté clair */
+    background-color: #000000; /* Noir pur */
+    color: #f5f5f5; /* Blanc très clair */
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
@@ -16,8 +17,8 @@ body {
 
 /* Header */
 header {
-    background-color: #0d1117; /* Noir bleuté profond */
-    color: #d0d7e3; /* Texte clair */
+    background-color: #0a0a0a; /* Noir légerement adouci */
+    color: #f5f5f5;
     padding: 50px 20px;
     text-align: center;
 }
@@ -25,12 +26,12 @@ header {
 header h1 {
     font-size: 2.8rem;
     margin-bottom: 10px;
-    color: #3da9fc; /* Bleu clair éclatant */
+    color: #ffffff;
 }
 
 header p {
     font-size: 1.2rem;
-    color: #8b9bb4; /* Gris bleuté */
+    color: #b3b3b3;
 }
 
 /* Boutons */
@@ -38,8 +39,8 @@ header p {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #3da9fc; /* Bleu clair */
-    color: #ffffff; /* Texte blanc */
+    background-color: #ffffff; /* Blanc pur */
+    color: #000000; /* Noir pur */
     text-decoration: none;
     font-size: 1rem;
     border-radius: 5px;
@@ -47,116 +48,94 @@ header p {
 }
 
 .download-cv:hover, .back-home:hover, .learn-more:hover {
-    background-color: #2a7ebf; /* Bleu plus foncé au survol */
+    background-color: #b3b3b3;
+    color: #000000;
     transform: scale(1.05);
 }
 
-/* Barre de navigation */
+/* Navigation */
 nav {
     display: flex;
     justify-content: center;
-    background-color: #0d1117; /* Noir bleuté profond */
+    background-color: #0a0a0a;
     padding: 10px 0;
-    border-bottom: 1px solid #1e293b; /* Bordure bleu-gris */
+    border-bottom: 1px solid #333;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 nav a {
-    color: #d0d7e3; /* Texte clair */
+    color: #f5f5f5;
     text-decoration: none;
     padding: 10px 20px;
     font-size: 1rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 nav a:hover {
-    background-color: #3da9fc; /* Bleu clair */
-    color: #121826; /* Texte sombre */
+    background-color: #ffffff;
+    color: #000000;
     border-radius: 4px;
 }
 
 /* Contenu principal */
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 40px auto;
     padding: 20px;
-    background-color: #1c2433; /* Bleu-gris foncé */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #111111;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     border-radius: 8px;
 }
 
-/* Sections */
-.section, .project-detail {
-    margin-bottom: 40px;
-}
-
-.section h2, .project-detail h2 {
+.section h2 {
     font-size: 2rem;
-    color: #3da9fc; /* Bleu clair */
+    color: #ffffff;
     margin-bottom: 20px;
-    border-bottom: 2px solid #3da9fc;
+    border-bottom: 2px solid #ffffff;
     padding-bottom: 10px;
 }
 
-.section p, .project-detail p {
+.section p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #d0d7e3; /* Texte clair */
+    color: #e0e0e0;
 }
 
-.section ul, .project-detail ul {
-    list-style-type: none;
-    padding-left: 20px;
-}
-
-.section ul li, .project-detail ul li {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: #d0d7e3; /* Texte clair */
-}
-
-.section a, .project-detail a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.section a:hover, .project-detail a:hover {
+.section a {
     color: #ffffff;
-    background-color: #8b9bb4;
+    text-decoration: none;
+    border-bottom: 1px solid #ffffff;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
-/* Projets */
-.project {
-    margin-bottom: 30px;
-}
-
-.project h3 {
-    font-size: 1.4rem;
-    color: #3da9fc;
-    margin-bottom: 10px;
-}
-
-.project p {
-    font-size: 1rem;
-    color: #8b9bb4; /* Gris bleuté */
+.section a:hover {
+    color: #b3b3b3;
+    border-bottom: 1px solid #b3b3b3;
 }
 
 /* Footer */
 footer {
-    background-color: #0d1117; /* Noir bleuté profond */
-    color: #d0d7e3; /* Texte clair */
+    background-color: #0a0a0a;
+    color: #b3b3b3;
     text-align: center;
     padding: 15px;
     position: fixed;
     bottom: 0;
     width: 100%;
-    border-top: 1px solid #1e293b; /* Bordure bleu-gris */
+    border-top: 1px solid #333;
 }
 
 footer p {
     font-size: 0.9rem;
-    margin: 0;
+}
+
+/* Animations subtiles */
+.section, .project {
+    transition: transform 0.3s ease;
+}
+
+.section:hover, .project:hover {
+    transform: translateY(-5px);
 }
