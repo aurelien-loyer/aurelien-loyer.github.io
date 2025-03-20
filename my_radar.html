@@ -5,54 +5,364 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Radar - Aurélien Loyer</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="My Radar - Un simulateur de contrôle aérien utilisant la bibliothèque CSFML avec détection de collisions.">
 </head>
 <body>
-
-    <!-- Header -->
-    <header>
-        <h1>My Radar</h1>
-        <p>Simulateur de contrôle aérien en CSFML</p>
-        <a href="index.html" class="back-home">Retour à l'accueil</a>
-    </header>
-
-    <!-- Navigation Bar -->
-    <nav id="navbar">
-        <a href="index.html#about">À propos</a>
-        <a href="index.html#skills">Compétences</a>
-        <a href="index.html#projects">Projets</a>
-        <a href="index.html#contact">Contact</a>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container">
-        <section class="project-detail">
-            <h2>Présentation du projet</h2>
-            <p>Le projet <strong>My Radar</strong> est un simulateur de contrôle aérien utilisant la bibliothèque CSFML. Ce projet inclut la gestion d'avions, de tours de contrôle, et la détection de collisions en temps réel.</p>
-            <h3>Fonctionnalités</h3>
-            <ul>
-                <li>Gestion des avions et des tours de contrôle</li>
-                <li>Détection de collisions en temps réel</li>
-                <li>Interface graphique avec CSFML</li>
-            </ul>
-            <h3>Démonstration</h3>
-            <p>Voici une démonstration du projet en action :</p>
-            <video controls width="100%">
-                <source src="videos/my_radar_demo.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la lecture de vidéos.
-            </video>
-            <h3>Technologies utilisées</h3>
-            <ul>
-                <li>Langage C</li>
-                <li>Bibliothèque CSFML</li>
-            </ul>
-        </section>
+    <!-- Loader -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
 
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">AL<span class="dot">.</span></a>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="index.html#home" class="nav-link">Accueil</a></li>
+                    <li><a href="index.html#about" class="nav-link">À propos</a></li>
+                    <li><a href="index.html#skills" class="nav-link">Compétences</a></li>
+                    <li><a href="index.html#projects" class="nav-link">Projets</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Changer de thème">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="cv_loyeraurelien.pdf" class="btn btn-outline" target="_blank">
+                        <i class="fas fa-file-alt"></i> Mon CV
+                    </a>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Header -->
+    <section class="project-header">
+        <div class="container">
+            <div class="project-title-container">
+                <a href="index.html#projects" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Retour aux projets
+                </a>
+                <h1 class="project-title">My Radar</h1>
+                <div class="project-meta">
+                    <div class="project-tags">
+                        <span class="project-tag">C</span>
+                        <span class="project-tag">CSFML</span>
+                        <span class="project-tag">Graphique</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/aurelien-loyer/my_radar" target="_blank" class="btn btn-outline">
+                            <i class="fab fa-github"></i> Voir sur GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Content -->
+    <section class="project-content">
+        <div class="container">
+            <div class="project-overview">
+                <div class="project-image">
+                    <video controls class="project-video">
+                        <source src="my_radar_demo.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                </div>
+                <div class="project-info">
+                    <h2>Aperçu du projet</h2>
+                    <p>
+                        <strong>My Radar</strong> est un simulateur de contrôle aérien développé en langage C avec la bibliothèque graphique CSFML. Ce projet simule des trajectoires d'avions avec un système de détection de collisions en temps réel.
+                    </p>
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Durée :</span>
+                            <span class="detail-value">3 semaines</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Technologies :</span>
+                            <span class="detail-value">C, CSFML, Make</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Année :</span>
+                            <span class="detail-value">2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-description">
+                <h2>Description</h2>
+                <p>
+                    <strong>My Radar</strong> est un simulateur de trafic aérien qui permet de visualiser et gérer des trajectoires d'avions sur une carte du monde. Le programme lit un fichier de script contenant des informations sur les avions et les tours de contrôle, puis simule leur mouvement et leurs interactions.
+                </p>
+                <p>
+                    Les principales fonctionnalités du projet comprennent :
+                </p>
+                <ul>
+                    <li>Affichage d'une carte du monde en arrière-plan</li>
+                    <li>Visualisation des avions et de leurs trajectoires</li>
+                    <li>Système de détection de collisions entre avions</li>
+                    <li>Tours de contrôle avec zones d'influence</li>
+                    <li>Interface utilisateur permettant d'activer/désactiver certaines fonctionnalités</li>
+                    <li>Simulation en temps réel avec contrôle de la vitesse</li>
+                </ul>
+            </div>
+
+            <div class="project-details-section">
+                <h2>Aspects techniques</h2>
+                <div class="tech-details">
+                    <div class="tech-detail-item">
+                        <h3><i class="fas fa-cogs"></i> Implémentation</h3>
+                        <p>
+                            Le projet est entièrement développé en C avec la bibliothèque graphique CSFML pour le rendu. La structure du code suit une approche modulaire avec différentes composantes :
+                        </p>
+                        <ul>
+                            <li>Gestion des entités (avions, tours)</li>
+                            <li>Système de parsing des fichiers de configuration</li>
+                            <li>Moteur de simulation physique</li>
+                            <li>Algorithme de détection de collisions quadratique</li>
+                            <li>Gestion des événements utilisateur</li>
+                            <li>Rendu graphique avec CSFML</li>
+                        </ul>
+                    </div>
+                    <div class="tech-detail-item">
+                        <h3><i class="fas fa-code"></i> Algorithmes clés</h3>
+                        <p>
+                            Un des défis principaux était l'implémentation d'un système efficace de détection de collisions. L'approche naïve consiste à vérifier chaque paire d'avions, ce qui donne une complexité de O(n²). Pour optimiser le processus :
+                        </p>
+                        <ul>
+                            <li>Utilisation de zones de contrôle pour éviter les vérifications inutiles</li>
+                            <li>Implémentation d'un système de quadtree pour améliorer les performances sur les grandes simulations</li>
+                            <li>Calcul vectoriel pour déterminer les trajectoires et points d'intersection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-challenges">
+                <h2>Défis et solutions</h2>
+                <div class="challenge-items">
+                    <div class="challenge-item">
+                        <h3>Optimisation des performances</h3>
+                        <p>
+                            Le défi majeur était de maintenir des performances fluides même avec un grand nombre d'avions à l'écran. Pour résoudre ce problème, j'ai implémenté :
+                        </p>
+                        <ul>
+                            <li>Une structure de données spatiale pour réduire le nombre de vérifications de collision</li>
+                            <li>Un système de rendu qui n'affiche que les éléments visibles à l'écran</li>
+                            <li>Des optimisations mémoire pour réduire les allocations dynamiques pendant la simulation</li>
+                        </ul>
+                    </div>
+                    <div class="challenge-item">
+                        <h3>Précision des collisions</h3>
+                        <p>
+                            La détection précise des collisions entre objets en mouvement était complexe. Ma solution comprend :
+                        </p>
+                        <ul>
+                            <li>Calcul des trajectoires futures pour anticiper les collisions</li>
+                            <li>Prise en compte des différentes vitesses et tailles des avions</li>
+                            <li>Système de priorité pour gérer les situations de collision multiple</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-code-example">
+                <h2>Extrait de code</h2>
+                <div class="code-container">
+                    <pre><code>// Fonction de détection de collision entre deux avions
+bool check_collision(airplane_t *a, airplane_t *b)
+{
+    if (a == b || a->has_landed || b->has_landed)
+        return false;
+        
+    // Vérifier si les avions sont dans une zone de contrôle
+    if (is_in_control_area(a) && is_in_control_area(b))
+        return false;
+        
+    // Calculer la distance entre les avions
+    float dx = a->position.x - b->position.x;
+    float dy = a->position.y - b->position.y;
+    float distance = sqrt(dx * dx + dy * dy);
+    
+    // Vérifier si la distance est inférieure à la somme des rayons
+    return distance < (a->radius + b->radius);
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="project-conclusion">
+                <h2>Conclusion et perspectives</h2>
+                <p>
+                    Ce projet m'a permis d'approfondir mes connaissances en programmation C et en développement graphique avec CSFML. J'ai particulièrement apprécié les défis techniques liés à l'optimisation des performances et à la gestion des collisions.
+                </p>
+                <p>
+                    Pour les améliorations futures, j'envisage d'ajouter :
+                </p>
+                <ul>
+                    <li>Une interface utilisateur plus complète avec des statistiques en temps réel</li>
+                    <li>Un éditeur visuel pour créer des scénarios de simulation</li>
+                    <li>Un système de météo affectant les trajectoires des avions</li>
+                    <li>Des algorithmes d'évitement de collision plus avancés</li>
+                </ul>
+            </div>
+
+            <div class="project-navigation">
+                <div class="nav-buttons">
+                    <a href="mini_shell.html" class="nav-button prev">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Mini Shell</span>
+                    </a>
+                    <a href="organized.html" class="nav-button next">
+                        <span>Organized</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Aurélien Loyer. Tous droits réservés.</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html">AL<span class="dot">.</span></a>
+                    <p>Développeur passionné</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="index.html#home">Accueil</a></li>
+                        <li><a href="index.html#about">À propos</a></li>
+                        <li><a href="index.html#skills">Compétences</a></li>
+                        <li><a href="index.html#projects">Projets</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Me suivre</h3>
+                    <div class="social-icons">
+                        <a href="https://github.com/aurelien-loyer" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/aurelien-loyer-epi/" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:aurelien.loyer@epitech.eu">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Aurélien Loyer. Tous droits réservés.</p>
+                <a href="#" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+        </div>
     </footer>
 
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Loader
+            setTimeout(() => {
+                document.querySelector('.loader-wrapper').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.loader-wrapper').style.display = 'none';
+                }, 500);
+            }, 1000);
+
+            // Mobile Menu Toggle
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // Sticky Header
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('sticky');
+                } else {
+                    navbar.classList.remove('sticky');
+                }
+            });
+
+            // Dark/Light Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            
+            // Set initial theme
+            if (currentTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-theme');
+                
+                if (document.body.classList.contains('light-theme')) {
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                }
+            });
+            
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>

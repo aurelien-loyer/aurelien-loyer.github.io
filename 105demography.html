@@ -3,55 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>demography - Aurélien Loyer</title>
+    <title>105demography | Aurélien Loyer</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Projet 105demography - Analyse démographique par Aurélien Loyer, étudiant à Epitech Réunion">
 </head>
 <body>
-
-    <!-- Header -->
-    <header>
-        <h1>105demography</h1>
-        <p>Analyse démographique en Python</p>
-        <a href="index.html" class="back-home">Retour à l'accueil</a>
-    </header>
-
-    <!-- Navigation Bar -->
-    <nav id="navbar">
-        <a href="index.html#about">À propos</a>
-        <a href="index.html#skills">Compétences</a>
-        <a href="index.html#projects">Projets</a>
-        <a href="index.html#contact">Contact</a>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container">
-        <section class="project-detail">
-            <h2>Présentation du projet</h2>
-            <p>Le projet <strong>demography</strong> est un projet d'analyse démographique en Python, utilisant des données statistiques pour prédire l'évolution de la population. Ce projet m'a initié à l'analyse de données et à la visualisation.</p>
-            <h3>Fonctionnalités</h3>
-            <ul>
-                <li>Analyse de données démographiques</li>
-                <li>Prédiction de l'évolution de la population</li>
-                <li>Visualisation des résultats</li>
-            </ul>
-            <h3>Démonstration</h3>
-            <p>Voici une démonstration du projet en action :</p>
-            <video controls width="100%">
-                <source src="videos/demography_demo.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la lecture de vidéos.
-            </video>
-            <h3>Technologies utilisées</h3>
-            <ul>
-                <li>Langage Python</li>
-            </ul>
-        </section>
+    <!-- Loader -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
 
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">AL<span class="dot">.</span></a>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="index.html#home" class="nav-link">Accueil</a></li>
+                    <li><a href="index.html#about" class="nav-link">À propos</a></li>
+                    <li><a href="index.html#skills" class="nav-link">Compétences</a></li>
+                    <li><a href="index.html#projects" class="nav-link active">Projets</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Changer de thème">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="cv_loyeraurelien.pdf" class="btn btn-outline" target="_blank">
+                        <i class="fas fa-file-alt"></i> Mon CV
+                    </a>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Header -->
+    <section class="project-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i></a>
+                <span>/</span>
+                <a href="index.html#projects">Projets</a>
+                <span>/</span>
+                <span>105demography</span>
+            </div>
+            <h1 class="project-title">105demography</h1>
+            <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Data Analysis</span>
+                <span class="project-tag">Statistiques</span>
+                <span class="project-tag">Régression linéaire</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Content -->
+    <section class="project-content section">
+        <div class="container">
+            <div class="project-container">
+                <div class="project-gallery">
+                    <div class="project-video">
+                        <video controls>
+                            <source src="demography_demo.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la lecture vidéo.
+                        </video>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-section">
+                        <h2>Présentation du projet</h2>
+                        <p>
+                            105demography est un projet d'analyse démographique réalisé dans le cadre de mes études à Epitech. Ce programme Python permet d'analyser l'évolution de la population de différents pays et de prédire les tendances futures grâce à une régression linéaire.
+                        </p>
+                    </div>
+                    <div class="project-section">
+                        <h2>Objectifs</h2>
+                        <ul class="project-list">
+                            <li>Créer un programme d'analyse démographique en Python</li>
+                            <li>Implémenter une régression linéaire simple pour modéliser l'évolution des populations</li>
+                            <li>Calculer le coefficient de corrélation pour évaluer la qualité du modèle</li>
+                            <li>Prédire l'évolution future des populations en fonction des tendances observées</li>
+                            <li>Afficher les résultats de manière claire et structurée</li>
+                        </ul>
+                    </div>
+                    <div class="project-section">
+                        <h2>Technologies utilisées</h2>
+                        <div class="tech-stack">
+                            <span class="tech-item"><i class="fab fa-python"></i> Python</span>
+                            <span class="tech-item"><i class="fas fa-calculator"></i> NumPy</span>
+                            <span class="tech-item"><i class="fas fa-chart-line"></i> Pandas</span>
+                            <span class="tech-item"><i class="fas fa-table"></i> CSV</span>
+                        </div>
+                    </div>
+                    <div class="project-section">
+                        <h2>Fonctionnalités</h2>
+                        <ul class="project-list">
+                            <li>Lecture et analyse de données démographiques au format CSV</li>
+                            <li>Calcul des coefficients de régression linéaire pour chaque pays</li>
+                            <li>Détermination du coefficient de corrélation</li>
+                            <li>Prédiction de l'évolution de la population sur plusieurs années</li>
+                            <li>Affichage des résultats sous forme de tableau formaté</li>
+                        </ul>
+                    </div>
+                    <div class="project-section">
+                        <h2>Compétences développées</h2>
+                        <p>
+                            Ce projet m'a permis de développer des compétences en :
+                        </p>
+                        <ul class="project-list">
+                            <li>Analyse et traitement de données</li>
+                            <li>Programmation Python orientée données</li>
+                            <li>Mise en œuvre d'algorithmes statistiques</li>
+                            <li>Régression linéaire et modélisation mathématique</li>
+                            <li>Formatage et présentation claire des résultats</li>
+                        </ul>
+                    </div>
+                    <div class="project-section">
+                        <h2>Code source</h2>
+                        <p>
+                            Vous pouvez consulter le code source complet de ce projet sur GitHub :
+                        </p>
+                        <a href="https://github.com/aurelien-loyer/105demography" class="btn btn-primary" target="_blank">
+                            <i class="fab fa-github"></i> Voir sur GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Projects -->
+    <section class="related-projects section section-alt">
+        <div class="container">
+            <h2 class="section-title">Autres projets</h2>
+            <div class="projects-grid">
+                <!-- Mini Shell Project -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="/api/placeholder/600/400" alt="Mini Shell Project">
+                        <div class="project-links">
+                            <a href="mini_shell.html" class="project-btn">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                            <a href="https://github.com/aurelien-loyer/mini_shell" class="project-btn" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tags">
+                            <span class="project-tag">C</span>
+                            <span class="project-tag">Shell</span>
+                        </div>
+                        <h3 class="project-title">Mini Shell</h3>
+                        <p class="project-description">Un shell simplifié capable d'exécuter des commandes de base.</p>
+                        <a href="mini_shell.html" class="project-link">Voir les détails <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- My Radar Project -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="/api/placeholder/600/400" alt="My Radar Project">
+                        <div class="project-links">
+                            <a href="my_radar.html" class="project-btn">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                            <a href="https://github.com/aurelien-loyer/my_radar" class="project-btn" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tags">
+                            <span class="project-tag">C</span>
+                            <span class="project-tag">CSFML</span>
+                        </div>
+                        <h3 class="project-title">My Radar</h3>
+                        <p class="project-description">Un simulateur de contrôle aérien utilisant la bibliothèque CSFML.</p>
+                        <a href="my_radar.html" class="project-link">Voir les détails <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Organized Project -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="/api/placeholder/600/400" alt="Organized Project">
+                        <div class="project-links">
+                            <a href="organized.html" class="project-btn">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                            <a href="https://github.com/aurelien-loyer/organized" class="project-btn" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tags">
+                            <span class="project-tag">C</span>
+                            <span class="project-tag">Algorithmique</span>
+                        </div>
+                        <h3 class="project-title">Organized</h3>
+                        <p class="project-description">Un programme pour organiser et trier des données selon des règles prédéfinies.</p>
+                        <a href="organized.html" class="project-link">Voir les détails <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Intéressé par mon travail ?</h2>
+                <p>N'hésitez pas à me contacter pour discuter de vos projets ou pour toute question.</p>
+                <a href="index.html#contact" class="btn btn-primary">Me contacter</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Aurélien Loyer. Tous droits réservés.</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html">AL<span class="dot">.</span></a>
+                    <p>Développeur passionné</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="index.html#home">Accueil</a></li>
+                        <li><a href="index.html#about">À propos</a></li>
+                        <li><a href="index.html#skills">Compétences</a></li>
+                        <li><a href="index.html#projects">Projets</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Me suivre</h3>
+                    <div class="social-icons">
+                        <a href="https://github.com/aurelien-loyer" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/aurelien-loyer-epi/" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:aurelien.loyer@epitech.eu">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Aurélien Loyer. Tous droits réservés.</p>
+                <a href="#" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+        </div>
     </footer>
 
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Loader
+            setTimeout(() => {
+                document.querySelector('.loader-wrapper').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.loader-wrapper').style.display = 'none';
+                }, 500);
+            }, 1000);
+
+            // Mobile Menu Toggle
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // Sticky Header
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('sticky');
+                } else {
+                    navbar.classList.remove('sticky');
+                }
+            });
+
+            // Dark/Light Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            
+            // Set initial theme
+            if (currentTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-theme');
+                
+                if (document.body.classList.contains('light-theme')) {
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                }
+            });
+
+            // Back to top
+            const backToTop = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+            
+            backToTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

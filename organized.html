@@ -3,56 +3,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organized - Aurélien Loyer</title>
+    <title>Organized | Aurélien Loyer</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Projet Organized par Aurélien Loyer - Un programme pour organiser et trier des données selon des règles prédéfinies.">
 </head>
 <body>
-
-    <!-- Header -->
-    <header>
-        <h1>Organized</h1>
-        <p>Organisation et tri de données en C</p>
-        <a href="index.html" class="back-home">Retour à l'accueil</a>
-    </header>
-
-    <!-- Navigation Bar -->
-    <nav id="navbar">
-        <a href="index.html#about">À propos</a>
-        <a href="index.html#skills">Compétences</a>
-        <a href="index.html#projects">Projets</a>
-        <a href="index.html#contact">Contact</a>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container">
-        <section class="project-detail">
-            <h2>Présentation du projet</h2>
-            <p>Le projet <strong>Organized</strong> est un programme en C pour organiser et trier des données selon des règles prédéfinies. Ce projet m'a permis de travailler sur la manipulation de données et les algorithmes de tri.</p>
-            <h3>Fonctionnalités</h3>
-            <ul>
-                <li>Organisation de données selon des règles spécifiques</li>
-                <li>Algorithmes de tri personnalisés</li>
-                <li>Gestion de fichiers et structures de données</li>
-            </ul>
-            <h3>Démonstration</h3>
-            <p>Voici une démonstration du projet en action :</p>
-            <video controls width="100%">
-                <source src="videos/organized_demo.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la lecture de vidéos.
-            </video>
-            <h3>Technologies utilisées</h3>
-            <ul>
-                <li>Langage C</li>
-                <li>Structures de données</li>
-            </ul>
-        </section>
+    <!-- Loader -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
 
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">AL<span class="dot">.</span></a>
+            </div>
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="index.html#home" class="nav-link">Accueil</a></li>
+                    <li><a href="index.html#about" class="nav-link">À propos</a></li>
+                    <li><a href="index.html#skills" class="nav-link">Compétences</a></li>
+                    <li><a href="index.html#projects" class="nav-link active">Projets</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Changer de thème">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="cv_loyeraurelien.pdf" class="btn btn-outline" target="_blank">
+                        <i class="fas fa-file-alt"></i> Mon CV
+                    </a>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Header -->
+    <section class="project-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Accueil</a>
+                <span>/</span>
+                <a href="index.html#projects">Projets</a>
+                <span>/</span>
+                <span>Organized</span>
+            </div>
+            <h1 class="project-title">Organized</h1>
+            <div class="project-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>2024</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-code"></i>
+                    <span>C</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-tag"></i>
+                    <span>Algorithmique</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Content -->
+    <section class="project-content">
+        <div class="container">
+            <div class="project-info-box">
+                <div class="info-header">
+                    <i class="fas fa-info-circle"></i>
+                    <h3>À propos du projet</h3>
+                </div>
+                <p>
+                    <strong>Organized</strong> est un programme écrit en C qui permet d'organiser et de trier des données selon des règles prédéfinies. Ce projet a été développé dans le cadre de ma formation à Epitech pour mettre en pratique les concepts d'algorithmique et de manipulation de structures de données.
+                </p>
+                <div class="project-links">
+                    <a href="https://github.com/aurelien-loyer/organized" class="btn btn-outline" target="_blank">
+                        <i class="fab fa-github"></i> Voir sur GitHub
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-media">
+                <h3>Démonstration</h3>
+                <div class="video-container">
+                    <video controls>
+                        <source src="organized_demo.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                </div>
+            </div>
+
+            <div class="project-description">
+                <h3>Description du projet</h3>
+                <p>
+                    Le projet Organized a pour objectif de créer un programme capable de lire un ensemble de données, de les trier selon différents critères, et de les organiser de manière structurée. Ce programme peut être particulièrement utile pour manipuler de grands volumes de données et les présenter de façon lisible et exploitable.
+                </p>
+                
+                <h4>Fonctionnalités principales</h4>
+                <ul>
+                    <li>Lecture de données depuis un fichier d'entrée</li>
+                    <li>Tri des données selon différents critères configurables</li>
+                    <li>Organisation des données en catégories</li>
+                    <li>Affichage des résultats de manière structurée</li>
+                    <li>Gestion efficace de la mémoire</li>
+                </ul>
+                
+                <h4>Technologies utilisées</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">C</span>
+                    <span class="tech-tag">Makefile</span>
+                    <span class="tech-tag">Structures de données</span>
+                    <span class="tech-tag">Algorithmes de tri</span>
+                    <span class="tech-tag">Gestion de fichiers</span>
+                </div>
+                
+                <h4>Compétences développées</h4>
+                <ul>
+                    <li>Conception et implémentation d'algorithmes de tri efficaces</li>
+                    <li>Manipulation avancée de structures de données en C</li>
+                    <li>Gestion optimisée de la mémoire</li>
+                    <li>Traitement de fichiers et parsing de données</li>
+                    <li>Organisation et structuration de code complexe</li>
+                </ul>
+            </div>
+
+            <div class="project-challenges">
+                <h3>Défis et solutions</h3>
+                <div class="challenge-item">
+                    <h4>Performance avec de grands volumes de données</h4>
+                    <p>
+                        Un des principaux défis était d'assurer la performance du programme lors du traitement de grands volumes de données. J'ai résolu ce problème en implémentant des algorithmes de tri optimisés et en utilisant des structures de données adaptées pour minimiser la complexité temporelle et spatiale.
+                    </p>
+                </div>
+                <div class="challenge-item">
+                    <h4>Gestion de la mémoire</h4>
+                    <p>
+                        La gestion efficace de la mémoire était cruciale pour éviter les fuites mémoire et optimiser l'utilisation des ressources. J'ai implémenté une allocation dynamique contrôlée et veillé à libérer correctement la mémoire après utilisation.
+                    </p>
+                </div>
+                <div class="challenge-item">
+                    <h4>Structure modulaire</h4>
+                    <p>
+                        Pour faciliter la maintenance et l'extension du code, j'ai adopté une approche modulaire avec des composants bien définis et des interfaces claires entre les différentes parties du programme.
+                    </p>
+                </div>
+            </div>
+
+            <div class="project-code">
+                <h3>Extrait de code</h3>
+                <div class="code-block">
+                    <pre><code>
+/*
+** Fonction principale de tri qui appelle les algorithmes appropriés
+** selon les critères spécifiés
+*/
+void sort_data(data_t *data, sort_criteria_t criteria) {
+    switch (criteria.algorithm) {
+        case SORT_QUICK:
+            quick_sort(data->items, 0, data->size - 1, criteria.compare_func);
+            break;
+        case SORT_MERGE:
+            merge_sort(data->items, 0, data->size - 1, criteria.compare_func);
+            break;
+        case SORT_HEAP:
+            heap_sort(data->items, data->size, criteria.compare_func);
+            break;
+        default:
+            // Tri par défaut
+            quick_sort(data->items, 0, data->size - 1, criteria.compare_func);
+    }
+}
+
+/*
+** Fonction d'organisation des données en catégories
+*/
+void organize_data(data_t *data, category_t *categories, int nb_categories) {
+    for (int i = 0; i < data->size; i++) {
+        for (int j = 0; j < nb_categories; j++) {
+            if (match_category(data->items[i], categories[j])) {
+                add_to_category(&categories[j], data->items[i]);
+            }
+        }
+    }
+}
+                    </code></pre>
+                </div>
+            </div>
+
+            <div class="project-nav">
+                <a href="my_radar.html" class="prev-project">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Projet précédent: My Radar</span>
+                </a>
+                <a href="105demography.html" class="next-project">
+                    <span>Projet suivant: 105demography</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Intéressé par mon travail?</h2>
+            <p>N'hésitez pas à me contacter pour discuter de vos projets ou opportunités de collaboration.</p>
+            <div class="cta-buttons">
+                <a href="index.html#contact" class="btn btn-primary">Me contacter</a>
+                <a href="index.html#projects" class="btn btn-secondary">Voir d'autres projets</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Aurélien Loyer. Tous droits réservés.</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html">AL<span class="dot">.</span></a>
+                    <p>Développeur passionné</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="index.html#home">Accueil</a></li>
+                        <li><a href="index.html#about">À propos</a></li>
+                        <li><a href="index.html#skills">Compétences</a></li>
+                        <li><a href="index.html#projects">Projets</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Me suivre</h3>
+                    <div class="social-icons">
+                        <a href="https://github.com/aurelien-loyer" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/aurelien-loyer-epi/" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:aurelien.loyer@epitech.eu">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Aurélien Loyer. Tous droits réservés.</p>
+                <a href="#top" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+        </div>
     </footer>
 
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Loader
+            setTimeout(() => {
+                document.querySelector('.loader-wrapper').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.loader-wrapper').style.display = 'none';
+                }, 500);
+            }, 1000);
+
+            // Mobile Menu Toggle
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // Sticky Header
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('sticky');
+                } else {
+                    navbar.classList.remove('sticky');
+                }
+            });
+
+            // Dark/Light Theme Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            
+            // Set initial theme
+            if (currentTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-theme');
+                
+                if (document.body.classList.contains('light-theme')) {
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                }
+            });
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#top') {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                        return;
+                    }
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
