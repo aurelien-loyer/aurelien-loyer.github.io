@@ -172,34 +172,27 @@
 ** Fonction principale de tri qui appelle les algorithmes appropriés
 ** selon les critères spécifiés
 */
-void sort_data(data_t *data, sort_criteria_t criteria) {
-    switch (criteria.algorithm) {
-        case SORT_QUICK:
-            quick_sort(data->items, 0, data->size - 1, criteria.compare_func);
-            break;
-        case SORT_MERGE:
-            merge_sort(data->items, 0, data->size - 1, criteria.compare_func);
-            break;
-        case SORT_HEAP:
-            heap_sort(data->items, data->size, criteria.compare_func);
-            break;
-        default:
-            // Tri par défaut
-            quick_sort(data->items, 0, data->size - 1, criteria.compare_func);
-    }
-}
+int sort_fct(char *arg, data_t **list)
+{
+    bool verif = FALSE;
 
-/*
-** Fonction d'organisation des données en catégories
-*/
-void organize_data(data_t *data, category_t *categories, int nb_categories) {
-    for (int i = 0; i < data->size; i++) {
-        for (int j = 0; j < nb_categories; j++) {
-            if (match_category(data->items[i], categories[j])) {
-                add_to_category(&categories[j], data->items[i]);
-            }
-        }
+    if (my_str_cmp(arg, "NAME") == 0) {
+        verif = TRUE;
+        name_sort(list);
     }
+    if (my_str_cmp(arg, "ID") == 0) {
+        verif = TRUE;
+        id_sort(list);
+    }
+    if (my_str_cmp(arg, "TYPE") == 0) {
+        verif = TRUE;
+        type_sort(list);
+    }
+    if (my_str_cmp(arg, "-r") == 0) {
+        reverse_list(list);
+        verif = TRUE;
+    }
+    return verif_bool(verif, list);
 }
                     </code></pre>
                 </div>
@@ -208,10 +201,10 @@ void organize_data(data_t *data, category_t *categories, int nb_categories) {
             <div class="project-nav">
                 <a href="my_radar.html" class="prev-project">
                     <i class="fas fa-arrow-left"></i>
-                    <span>Projet précédent: My Radar</span>
+                    <span>My Radar</span>
                 </a>
                 <a href="105demography.html" class="next-project">
-                    <span>Projet suivant: 105demography</span>
+                    <span>105demography</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
