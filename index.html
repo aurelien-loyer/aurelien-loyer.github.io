@@ -5,114 +5,457 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurélien Loyer - Étudiant Epitech</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="Portfolio d'Aurélien Loyer, étudiant en informatique à Epitech Réunion et développeur en devenir.">
 </head>
 <body>
+    <!-- Overlay de chargement -->
+    <div id="loading-overlay">
+        <div class="loader"></div>
+    </div>
 
     <!-- Header -->
-    <header>
-        <h1>Aurélien Loyer</h1>
-        <p>Étudiant Epitech Réunion | Développeur en devenir</p>
-        <a href="cv_loyeraurelien.pdf" download="cv_loyeraurelien.pdf" class="download-cv">Télécharger mon CV</a>
+    <header id="home">
+        <div class="header-content">
+            <h1>Aurélien Loyer</h1>
+            <p class="typing-text">Étudiant Epitech Réunion | Développeur en devenir</p>
+            <div class="header-actions">
+                <a href="cv_loyeraurelien.pdf" download="cv_loyeraurelien.pdf" class="btn btn-primary">
+                    <i class="fas fa-download"></i> Télécharger mon CV
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i> Me contacter
+                </a>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <a href="#about"><i class="fas fa-chevron-down"></i></a>
+        </div>
     </header>
 
     <!-- Navigation Bar -->
     <nav id="navbar">
-        <a href="#about">À propos</a>
-        <a href="#skills">Compétences</a>
-        <a href="#projects">Projets</a>
-        <a href="#contact">Contact</a>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#home">AL</a>
+            </div>
+            <div class="nav-links">
+                <a href="#about"><i class="fas fa-user"></i> À propos</a>
+                <a href="#skills"><i class="fas fa-code"></i> Compétences</a>
+                <a href="#projects"><i class="fas fa-project-diagram"></i> Projets</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            <div class="theme-toggle">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </div>
+            <div class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
     </nav>
+
+    <!-- Menu Mobile -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#about"><i class="fas fa-user"></i> À propos</a>
+        <a href="#skills"><i class="fas fa-code"></i> Compétences</a>
+        <a href="#projects"><i class="fas fa-project-diagram"></i> Projets</a>
+        <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
 
     <!-- Main Content -->
     <div class="container">
         <!-- About Section -->
         <section id="about" class="section">
-            <h2>À propos de moi</h2>
-            <p>Bonjour ! Je m'appelle Aurélien Loyer, étudiant en informatique à Epitech Réunion. Passionné par le développement logiciel et les nouvelles technologies, je suis constamment à la recherche de nouveaux défis pour approfondir mes connaissances et améliorer mes compétences.</p>
-            <p>Actuellement, je me spécialise dans la programmation en C et Python, tout en explorant le développement web et les bonnes pratiques de gestion de projet.</p>
+            <div class="section-header">
+                <h2><i class="fas fa-user"></i> À propos de moi</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Bonjour ! Je m'appelle <span class="highlight">Aurélien Loyer</span>, étudiant en informatique à Epitech Réunion. Passionné par le développement logiciel et les nouvelles technologies, je suis constamment à la recherche de nouveaux défis pour approfondir mes connaissances et améliorer mes compétences.</p>
+                    <p>Actuellement, je me spécialise dans la programmation en C et Python, tout en explorant le développement web et les bonnes pratiques de gestion de projet.</p>
+                    <div class="about-buttons">
+                        <a href="#skills" class="btn btn-secondary"><i class="fas fa-code"></i> Voir mes compétences</a>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-text">Langages maîtrisés</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4+</div>
+                        <div class="stat-text">Projets réalisés</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2</div>
+                        <div class="stat-text">Années d'études</div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Skills Section -->
         <section id="skills" class="section">
-            <h2>Compétences</h2>
-            <ul>
-                <li><strong>Langages de programmation :</strong> C, Python, HTML, CSS</li>
-                <li><strong>Outils de développement :</strong> Git, GitHub, Visual Studio Code</li>
-                <li><strong>Systèmes d'exploitation :</strong> Linux (Ubuntu), Windows</li>
-                <li><strong>Soft skills :</strong> Travail d'équipe, résolution de problèmes, gestion du temps</li>
-            </ul>
+            <div class="section-header">
+                <h2><i class="fas fa-code"></i> Compétences</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-content">
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Langages de programmation</h3>
+                    <div class="skill-bars">
+                        <div class="skill-bar">
+                            <div class="skill-info">
+                                <span>C</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-level" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-info">
+                                <span>Python</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-level" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-info">
+                                <span>HTML/CSS</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-level" style="width: 65%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Outils et environnements</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fab fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-code"></i>
+                            <span>VSCode</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-linux"></i>
+                            <span>Linux</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-windows"></i>
+                            <span>Windows</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-user-friends"></i> Soft skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fas fa-users"></i>
+                            <span>Travail d'équipe</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Résolution de problèmes</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Gestion du temps</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Projects Section -->
         <section id="projects" class="section">
-            <h2>Projets</h2>
-            <!-- Mini Shell Project -->
-            <div class="project">
-                <h3>mini_shell (C)</h3>
-                <p>Un shell simplifié en C, capable d'exécuter des commandes de base, de gérer certains Builtin comme CD, ENV, UNSETENV, SETENV. Ce projet m'a permis de comprendre le fonctionnement des shells et des processus sous Unix.</p>
-                <a href="mini_shell.html" class="learn-more">En savoir plus</a>
+            <div class="section-header">
+                <h2><i class="fas fa-project-diagram"></i> Projets</h2>
+                <div class="section-line"></div>
             </div>
-            <!-- My Radar Project -->
-            <div class="project">
-                <h3>my_radar (CSFML)</h3>
-                <p>Un simulateur de contrôle aérien utilisant la bibliothèque CSFML. Ce projet inclut la gestion d'avions, de tours de contrôle, et la détection de collisions en temps réel.</p>
-                <a href="my_radar.html" class="learn-more">En savoir plus</a>
+            <div class="projects-filters">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="c">C</button>
+                <button class="filter-btn" data-filter="python">Python</button>
             </div>
-            <!-- Organized Project -->
-            <div class="project">
-                <h3>organized (C)</h3>
-                <p>Un programme en C pour organiser et trier des données selon des règles prédéfinies. Ce projet m'a permis de travailler sur la manipulation de données.</p>
-                <a href="organized.html" class="learn-more">En savoir plus</a>
-            </div>
-            <!-- demography Project -->
-            <div class="project">
-                <h3>105demography (PYTHON)</h3>
-                <p>Un projet d'analyse démographique en Python, utilisant des données statistiques pour prédire l'évolution de la population. Ce projet m'a initié à l'analyse de données.</p>
-                <a href="105demography.html" class="learn-more">En savoir plus</a>
+            <div class="projects-grid">
+                <!-- Mini Shell Project -->
+                <div class="project-card" data-category="c">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/200" alt="Mini Shell" />
+                        <div class="project-overlay">
+                            <a href="mini_shell.html" class="project-link">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>mini_shell</h3>
+                        <div class="project-category">C</div>
+                        <p>Un shell simplifié capable d'exécuter des commandes de base et gérer différents Builtin.</p>
+                        <a href="mini_shell.html" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
+                <!-- My Radar Project -->
+                <div class="project-card" data-category="c">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/200" alt="My Radar" />
+                        <div class="project-overlay">
+                            <a href="my_radar.html" class="project-link">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>my_radar</h3>
+                        <div class="project-category">CSFML</div>
+                        <p>Un simulateur de contrôle aérien utilisant la bibliothèque CSFML avec détection de collisions.</p>
+                        <a href="my_radar.html" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
+                <!-- Organized Project -->
+                <div class="project-card" data-category="c">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/200" alt="Organized" />
+                        <div class="project-overlay">
+                            <a href="organized.html" class="project-link">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>organized</h3>
+                        <div class="project-category">C</div>
+                        <p>Un programme pour organiser et trier des données selon des règles prédéfinies.</p>
+                        <a href="organized.html" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
+                <!-- Demography Project -->
+                <div class="project-card" data-category="python">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/200" alt="105demography" />
+                        <div class="project-overlay">
+                            <a href="105demography.html" class="project-link">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>105demography</h3>
+                        <div class="project-category">Python</div>
+                        <p>Un projet d'analyse démographique utilisant des données statistiques pour prédire l'évolution de la population.</p>
+                        <a href="105demography.html" class="btn btn-outline">En savoir plus</a>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Contact Section -->
         <section id="contact" class="section">
-            <h2>Contact</h2>
-            <p>Email : <a href="mailto:aurelien.loyer@epitech.eu">aurelien.loyer@epitech.eu</a></p>
-            <p>LinkedIn : <a href="https://www.linkedin.com/in/aurelien-loyer-epi/" target="_blank">Aurélien Loyer</a></p>
-            <p>GitHub : <a href="https://github.com/aurelien-loyer" target="_blank">Aurélien Loyer</a></p>
-            <p>Numéro de Téléphone (Réunion) : <a href="tel:+262692010293">0692 01 02 93</a></p>
+            <div class="section-header">
+                <h2><i class="fas fa-envelope"></i> Contact</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Mes coordonnées</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:aurelien.loyer@epitech.eu">aurelien.loyer@epitech.eu</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <a href="https://www.linkedin.com/in/aurelien-loyer-epi/" target="_blank">Aurélien Loyer</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <div>
+                            <h4>GitHub</h4>
+                            <a href="https://github.com/aurelien-loyer" target="_blank">aurelien-loyer</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Téléphone</h4>
+                            <a href="tel:+262692010293">0692 01 02 93</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envoyez-moi un message</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Votre email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Sujet" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Votre message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Envoyer
+                        </button>
+                    </form>
+                </div>
+            </div>
         </section>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Aurélien Loyer. Tous droits réservés.</p>
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="https://github.com/aurelien-loyer" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/aurelien-loyer-epi/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Aurélien Loyer. Tous droits réservés.</p>
+            </div>
+            <div class="back-to-top">
+                <a href="#home"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
     </footer>
 
-    <!-- JavaScript for Smooth Scroll and Sticky Navbar -->
+    <!-- JavaScript -->
     <script>
-        // Smooth Scroll
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chargement de la page
+            setTimeout(function() {
+                document.getElementById('loading-overlay').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loading-overlay').style.display = 'none';
+                }, 500);
+            }, 1000);
+
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                    // Fermer le menu mobile si ouvert
+                    if (document.getElementById('mobile-menu').classList.contains('active')) {
+                        document.getElementById('mobile-menu').classList.remove('active');
+                    }
                 });
             });
-        });
 
-        // Sticky Navbar
-        window.onscroll = function() {myFunction()};
-        var navbar = document.getElementById("navbar");
-        var sticky = navbar.offsetTop;
+            // Sticky Navbar
+            const navbar = document.getElementById('navbar');
+            const sticky = navbar.offsetTop;
 
-        function myFunction() {
-            if (window.pageYOffset >= sticky) {
-                navbar.classList.add("sticky");
-            } else {
-                navbar.classList.remp4e("sticky");
+            window.onscroll = function() {
+                if (window.pageYOffset > sticky) {
+                    navbar.classList.add('sticky');
+                } else {
+                    navbar.classList.remove('sticky');
+                }
+            };
+
+            // Menu Mobile
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+            });
+
+            // Filtres des projets
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Retirer la classe active de tous les boutons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    // Ajouter la classe active au bouton cliqué
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Thème clair/sombre
+            const themeIcon = document.getElementById('theme-icon');
+            const body = document.body;
+
+            // Vérifier si un thème est enregistré
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                body.classList.add('light-theme');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
             }
-        }
-    </script>
 
+            themeIcon.addEventListener('click', function() {
+                body.classList.toggle('light-theme');
+                
+                if (body.classList.contains('light-theme')) {
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+
+            // Formulaire de contact
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulation d'envoi de formulaire (en production, remplacer par un vrai envoi)
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+                submitBtn.disabled = true;
+                
+                setTimeout(function() {
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé !';
+                    contactForm.reset();
+                    
+                    setTimeout(function() {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, 3000);
+                }, 2000);
+            });
+        });
+    </script>
 </body>
 </html>
