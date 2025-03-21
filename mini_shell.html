@@ -125,6 +125,29 @@
         .light-theme .try-it-button:hover {
             background-color: #1a9043;
         }
+
+        /* Ajout pour le terminal interactif */
+        .interactive-prompt {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #commandInput {
+            background: transparent;
+            border: none;
+            color: #f8f8f2;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            flex-grow: 1;
+            outline: none;
+            caret-color: #f8f8f2;
+        }
+
+        .light-theme #commandInput {
+            color: #e6e6e6;
+            caret-color: #e6e6e6;
+        }
     </style>
 </head>
 <body>
@@ -245,6 +268,10 @@
                             <div style="width: 50px;"></div>
                         </div>
                         <div class="terminal-content" id="terminalContent">Prêt à exécuter Mini Shell...</div>
+                        <div class="interactive-prompt" id="promptContainer" style="display: none;">
+                            <span class="terminal-prompt" id="prompt">$</span>
+                            <input type="text" id="commandInput" autocomplete="off" spellcheck="false">
+                        </div>
                     </div>
                     
                     <button class="try-it-button" id="launchShellBtn">
@@ -439,34 +466,158 @@
                 });
             });
             
-            // Mini Shell functionality
+            // Variables pour le terminal interactif
             const terminalContent = document.getElementById('terminalContent');
             const launchShellBtn = document.getElementById('launchShellBtn');
+            const promptContainer = document.getElementById('promptContainer');
+            const commandInput = document.getElementById('commandInput');
+            const prompt = document.getElementById('prompt');
             
             // État du shell
             let shellRunning = false;
+            let currentDirectory = "~/mysh";
+            
+            // Commandes disponibles pour la simulation
+            const availableCommands = {
+                "ls": () => {
+                    if (currentDirectory === "~/mysh") {
+                        return "README.md\nsrc/\ninclude/\nMakefile";
+                    } else if (currentDirectory === "~/mysh/src") {
+                        return "main.c\nbuiltins.c\nexecute.c\nenv_manager.c\nutils.c";
+                    } else if (currentDirectory === "~/mysh/include") {
+                        return "mysh.h\nbuiltins.h\nenv_manager.h";
+                    } else {
+                        return "";
+                    }
+                },
+                "pwd": () => currentDirectory,
+                "cd": (args) => {
+                    if (!args || args === "~") {
+                        currentDirectory = "~/mysh";
+                        prompt.textContent = `${currentDirectory} $`;
+                        return "";
+                    } else if (args === "src" && currentDirectory === "~/mysh") {
+                        currentDirectory = "~/mysh/src";
+                        prompt.textContent = `${currentDirectory} $`;
+                        return "";
+                    } else if (args === "include" && currentDirectory === "~/mysh") {
+                        currentDirectory = "~/mysh/include";
+                        prompt.textContent = `${currentDirectory} $`;
+                        return "";
+                    } else if (args === "..") {
+                        if (currentDirectory === "~/mysh/src" || currentDirectory === "~/mysh/include") {
+                            currentDirectory = "~/mysh";
+                            prompt.textContent = `${currentDirectory} $`;
+                            return "";
+                        } else {
+                            return "cd: impossible de remonter au-delà du répertoire racine";
+                        }
+                    } else {
+                        return `cd: ${args}: Aucun fichier ou dossier de ce type`;
+                    }
+                },
+                "cat": (args) => {
+                    if (args === "README.md" && currentDirectory === "~/mysh") {
+                        return "# Mini Shell\n\nShell simplifié en langage C\n\n## Compilation\n\n```\nmake\n```\n\n## Utilisation\n\n```\n./mysh\n```";
+                    } else if (args === "main.c" && currentDirectory === "~/mysh/src") {
+                        return "#include \"../include/mysh.h\"\n\nint main(int argc, char **argv, char **env) {\n    // Initialize environment\n    char **env_copy = copy_environment(env);\n    \n    // Start command loop\n    run_shell(env_copy);\n    \n    // Clean up before exit\n    free_environment(env_copy);\n    return 0;\n}";
+                    } else if (args === "mysh.h" && currentDirectory === "~/mysh/include") {
+                        return "#ifndef MYSH_H\n#define MYSH_H\n\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <unistd.h>\n#include <sys/wait.h>\n\n// Shell functions\nvoid run_shell(char **env);\nvoid execute_command(char *command, char **env);\n\n// Environment management\nchar **copy_environment(char **env);\nvoid free_environment(char **env);\n\n#endif";
+                    } else {
+                        return `cat: ${args}: Aucun fichier ou dossier de ce type`;
+                    }
+                },
+                "help": () => {
+                    return "Commandes disponibles dans cette simulation:\n- ls: Afficher le contenu du répertoire\n- pwd: Afficher le répertoire courant\n- cd [dossier]: Changer de répertoire\n- cat [fichier]: Afficher le contenu d'un fichier\n- clear: Effacer l'écran\n- exit: Quitter le Mini Shell\n- help: Afficher cette aide";
+                },
+                "clear": () => {
+                    terminalContent.textContent = "";
+                    return "";
+                },
+                "exit": () => {
+                    shellRunning = false;
+                    promptContainer.style.display = "none";
+                    terminalContent.textContent += "\nAu revoir!\n";
+                    launchShellBtn.innerHTML = '<i class="fas fa-terminal"></i> Lancer mysh';
+                    return null;  // valeur spéciale pour indiquer la sortie
+                }
+            };
+            
+            // Fonction pour traiter les commandes
+            function processCommand(commandStr) {
+                const parts = commandStr.trim().split(/\s+/);
+                const command = parts[0].toLowerCase();
+                const args = parts.slice(1).join(" ");
+                
+                if (command === "") {
+                    return "";
+                }
+                
+                if (availableCommands[command]) {
+                    const result = availableCommands[command](args);
+                    if (result === null) {
+                        return null;  // commande exit
+                    }
+                    return result;
+                } else {
+                    return `${command}: commande introuvable`;
+                }
+            }
+            
+            // Gestion des entrées de commandes
+            commandInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    
+                    const command = commandInput.value;
+                    terminalContent.textContent += `${prompt.textContent} ${command}\n`;
+                    
+                    const result = processCommand(command);
+                    if (result !== null) {
+                        if (result) {
+                            terminalContent.textContent += `${result}\n`;
+                        }
+                        commandInput.value = "";
+                        
+                        // Faire défiler vers le bas
+                        const container = document.getElementById('terminalContainer');
+                        container.scrollTop = container.scrollHeight;
+                        
+                        // Remettre le focus sur l'input
+                        commandInput.focus();
+                    }
+                }
+            });
             
             // Fonction pour lancer l'exécutable mysh
             function launchMysh() {
                 if (shellRunning) {
                     // Si déjà en cours d'exécution, arrêter
+                    shellRunning = false;
+                    promptContainer.style.display = "none";
                     terminalContent.textContent += "\nArrêt de mysh...\n";
                     terminalContent.textContent += "Mini Shell a été fermé.\n";
                     
                     // Réinitialiser le bouton
                     launchShellBtn.innerHTML = '<i class="fas fa-terminal"></i> Lancer mysh';
                     launchShellBtn.classList.remove('active');
-                    shellRunning = false;
                     return;
                 }
                 
                 // Sinon, démarrer
                 terminalContent.textContent = "$ ./mysh\n";
                 terminalContent.textContent += "Démarrage de Mini Shell...\n";
-                terminalContent.textContent += "Mini Shell v1.0 - Aurélien Loyer\n";
-                terminalContent.textContent += "\nMysh est maintenant en cours d'exécution.\n";
-                terminalContent.textContent += "Note: Ce terminal est une simulation et n'exécute pas réellement l'application mysh.\n";
-                terminalContent.textContent += "Pour tester véritablement le Mini Shell, téléchargez le code source et compilez-le localement.\n";
+                terminalContent.textContent += "Mini Shell v1.0 - Aurélien Loyer\n\n";
+                terminalContent.textContent += "Tapez 'help' pour voir les commandes disponibles\n";
+                
+                // Réinitialiser le répertoire courant
+                currentDirectory = "~/mysh";
+                prompt.textContent = `${currentDirectory} $`;
+                
+                // Afficher le prompt d'entrée
+                promptContainer.style.display = "flex";
+                commandInput.value = "";
+                commandInput.focus();
                 
                 // Changer le texte du bouton pour indiquer qu'on peut arrêter
                 launchShellBtn.innerHTML = '<i class="fas fa-stop"></i> Arrêter mysh';
@@ -476,6 +627,13 @@
             
             // Associer l'événement au bouton
             launchShellBtn.addEventListener('click', launchMysh);
+            
+            // Assurer que le focus reste sur l'input quand on clique dans le terminal
+            document.getElementById('terminalContainer').addEventListener('click', function() {
+                if (shellRunning) {
+                    commandInput.focus();
+                }
+            });
         });
     </script>
 </body>
