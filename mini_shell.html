@@ -298,9 +298,7 @@
                 <h2>Autres projets</h2>
                 <div class="projects-grid small-grid">
                     <div class="project-card" data-category="csfml">
-                        <div class="project-img">
-                            <img src="/api/placeholder/300/200" alt="My Radar Project">
-                        </div>
+                        <div class="project-image-placeholder"></div>
                         <div class="project-info">
                             <h3 class="project-title">My Radar</h3>
                             <p class="project-description">Simulateur de contrôle aérien avec CSFML</p>
@@ -309,9 +307,7 @@
                     </div>
 
                     <div class="project-card" data-category="c">
-                        <div class="project-img">
-                            <img src="/api/placeholder/300/200" alt="Organized Project">
-                        </div>
+                        <div class="project-image-placeholder"></div>
                         <div class="project-info">
                             <h3 class="project-title">Organized</h3>
                             <p class="project-description">Programme d'organisation de données</p>
@@ -320,9 +316,7 @@
                     </div>
 
                     <div class="project-card" data-category="python">
-                        <div class="project-img">
-                            <img src="/api/placeholder/300/200" alt="105demography Project">
-                        </div>
+                        <div class="project-image-placeholder"></div>
                         <div class="project-info">
                             <h3 class="project-title">105demography</h3>
                             <p class="project-description">Analyse démographique en Python</p>
@@ -453,6 +447,7 @@
             let shellProcess = null;
             const terminalContent = document.getElementById('terminalContent');
             const terminalCommand = document.getElementById('terminalCommand');
+            const terminalContainer = document.getElementById('terminalContainer');
             const launchShellBtn = document.getElementById('launchShellBtn');
             
             // Function to start the shell process
@@ -565,8 +560,10 @@
             });
             
             // Handle command input
-            terminalCommand.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter' && shellProcess) {
+            terminalCommand.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey && shellProcess) {
+                    e.preventDefault(); // Empêcher le comportement par défaut
+                    
                     const command = this.value.trim();
                     
                     if (command) {
@@ -582,6 +579,26 @@
                         // Clear input
                         this.value = '';
                     }
+                }
+            });
+            
+            // Focus on the input field when clicking anywhere in the terminal container
+            terminalContainer.addEventListener('click', function() {
+                if (!terminalCommand.disabled) {
+                    terminalCommand.focus();
+                }
+            });
+            
+            // Prevent focus loss when typing in the terminal
+            terminalCommand.addEventListener('blur', function() {
+                if (shellProcess) {
+                    // Small delay to allow for click events elsewhere
+                    setTimeout(() => {
+                        // Only refocus if shell is still running
+                        if (shellProcess && document.activeElement !== terminalCommand) {
+                            terminalCommand.focus();
+                        }
+                    }, 100);
                 }
             });
             
