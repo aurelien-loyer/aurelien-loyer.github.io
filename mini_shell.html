@@ -232,7 +232,7 @@
                         Ce shell a été implémenté en C, en utilisant diverses fonctions système comme fork(), execve(), waitpid() pour la gestion des processus enfants. L'environnement système est géré à travers une structure de données personnalisée permettant la manipulation des variables d'environnement.
                     </p>
                     
-                    <h3>Essayez le Mini Shell en direct!</h3>
+                    <h3>Essayez Mini Shell (mysh) en direct!</h3>
                     
                     <div class="terminal-container" id="terminalContainer">
                         <div class="terminal-header">
@@ -241,18 +241,14 @@
                                 <div class="terminal-button button-yellow"></div>
                                 <div class="terminal-button button-green"></div>
                             </div>
-                            <div class="terminal-title">Mini Shell</div>
+                            <div class="terminal-title">Terminal - Mini Shell</div>
                             <div style="width: 50px;"></div>
                         </div>
-                        <div class="terminal-content" id="terminalContent">Chargement de Mini Shell...</div>
-                        <div class="terminal-input">
-                            <span class="terminal-prompt">$></span>
-                            <input type="text" class="terminal-command" id="terminalCommand" placeholder="Tapez une commande..." />
-                        </div>
+                        <div class="terminal-content" id="terminalContent">Prêt à exécuter Mini Shell...</div>
                     </div>
                     
                     <button class="try-it-button" id="launchShellBtn">
-                        <i class="fas fa-terminal"></i> Lancer Mini Shell
+                        <i class="fas fa-terminal"></i> Lancer mysh
                     </button>
                 </div>
 
@@ -444,166 +440,42 @@
             });
             
             // Mini Shell functionality
-            let shellProcess = null;
             const terminalContent = document.getElementById('terminalContent');
-            const terminalCommand = document.getElementById('terminalCommand');
-            const terminalContainer = document.getElementById('terminalContainer');
             const launchShellBtn = document.getElementById('launchShellBtn');
             
-            // Function to start the shell process
-            function startShell() {
-                terminalContent.textContent = "Démarrage de Mini Shell...\n";
-                
-                try {
-                    // Create a new Web Worker to communicate with the shell executable
-                    if (window.Worker) {
-                        // Create a worker script to handle shell communication
-                        const workerBlob = new Blob([`
-                            // This is a simulated worker for shell interaction
-                            self.addEventListener('message', function(e) {
-                                if (e.data.type === 'command') {
-                                    // Simulate sending command to shell
-                                    const command = e.data.command;
-                                    
-                                    // Mock response based on command
-                                    let response;
-                                    if (command === 'ls') {
-                                        response = "mysh\nREADME.md\nsrc/\ninclude/\nMakefile";
-                                    } else if (command === 'pwd') {
-                                        response = "/home/user/mini_shell";
-                                    } else if (command === 'echo hello') {
-                                        response = "hello";
-                                    } else if (command.startsWith('cd ')) {
-                                        response = ""; // cd usually has no output on success
-                                    } else if (command === 'help') {
-                                        response = "Commandes disponibles:\n- ls: liste les fichiers\n- pwd: affiche le répertoire courant\n- cd: change de répertoire\n- exit: quitte le shell";
-                                    } else if (command === 'exit') {
-                                        response = "Fermeture du shell...";
-                                        self.postMessage({type: 'exit'});
-                                        return;
-                                    } else {
-                                        response = \`\${command}: commande non trouvée\`;
-                                    }
-                                    
-                                    self.postMessage({
-                                        type: 'output',
-                                        output: response
-                                    });
-                                }
-                            });
-                            
-                            // Initial startup message
-                            self.postMessage({
-                                type: 'ready', 
-                                output: "Mini Shell v1.0 démarré\\nTapez 'help' pour voir les commandes disponibles\\nTapez 'exit' pour quitter"
-                            });
-                        `], {type: 'application/javascript'});
-                        
-                        const workerUrl = URL.createObjectURL(workerBlob);
-                        shellProcess = new Worker(workerUrl);
-                        
-                        shellProcess.onmessage = function(e) {
-                            if (e.data.type === 'ready' || e.data.type === 'output') {
-                                terminalContent.textContent += e.data.output + "\n";
-                                terminalContent.scrollTop = terminalContent.scrollHeight;
-                            } else if (e.data.type === 'exit') {
-                                setTimeout(() => {
-                                    stopShell();
-                                }, 1000);
-                            }
-                        };
-                        
-                        shellProcess.onerror = function(error) {
-                            terminalContent.textContent += "Erreur: " + error.message + "\n";
-                            stopShell();
-                        };
-                        
-                        // Enable command input
-                        terminalCommand.disabled = false;
-                        terminalCommand.focus();
-                        
-                        // Change button text
-                        launchShellBtn.innerHTML = '<i class="fas fa-stop"></i> Arrêter Mini Shell';
-                        launchShellBtn.classList.add('active');
-                    } else {
-                        terminalContent.textContent += "Votre navigateur ne supporte pas les Web Workers, nécessaires pour exécuter le shell.\n";
-                    }
-                } catch (error) {
-                    terminalContent.textContent += "Erreur lors du démarrage du shell: " + error.message + "\n";
+            // État du shell
+            let shellRunning = false;
+            
+            // Fonction pour lancer l'exécutable mysh
+            function launchMysh() {
+                if (shellRunning) {
+                    // Si déjà en cours d'exécution, arrêter
+                    terminalContent.textContent += "\nArrêt de mysh...\n";
+                    terminalContent.textContent += "Mini Shell a été fermé.\n";
+                    
+                    // Réinitialiser le bouton
+                    launchShellBtn.innerHTML = '<i class="fas fa-terminal"></i> Lancer mysh';
+                    launchShellBtn.classList.remove('active');
+                    shellRunning = false;
+                    return;
                 }
+                
+                // Sinon, démarrer
+                terminalContent.textContent = "$ ./mysh\n";
+                terminalContent.textContent += "Démarrage de Mini Shell...\n";
+                terminalContent.textContent += "Mini Shell v1.0 - Aurélien Loyer\n";
+                terminalContent.textContent += "\nMysh est maintenant en cours d'exécution.\n";
+                terminalContent.textContent += "Note: Ce terminal est une simulation et n'exécute pas réellement l'application mysh.\n";
+                terminalContent.textContent += "Pour tester véritablement le Mini Shell, téléchargez le code source et compilez-le localement.\n";
+                
+                // Changer le texte du bouton pour indiquer qu'on peut arrêter
+                launchShellBtn.innerHTML = '<i class="fas fa-stop"></i> Arrêter mysh';
+                launchShellBtn.classList.add('active');
+                shellRunning = true;
             }
             
-            // Function to stop the shell process
-            function stopShell() {
-                if (shellProcess) {
-                    shellProcess.terminate();
-                    shellProcess = null;
-                }
-                
-                terminalContent.textContent += "Shell arrêté.\n";
-                
-                // Disable command input
-                terminalCommand.disabled = true;
-                
-                // Reset button
-                launchShellBtn.innerHTML = '<i class="fas fa-terminal"></i> Lancer Mini Shell';
-                launchShellBtn.classList.remove('active');
-            }
-            
-            // Toggle shell start/stop
-            launchShellBtn.addEventListener('click', function() {
-                if (shellProcess) {
-                    stopShell();
-                } else {
-                    startShell();
-                }
-            });
-            
-            // Handle command input
-            terminalCommand.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && !e.shiftKey && shellProcess) {
-                    e.preventDefault(); // Empêcher le comportement par défaut
-                    
-                    const command = this.value.trim();
-                    
-                    if (command) {
-                        // Display command in terminal
-                        terminalContent.textContent += "$> " + command + "\n";
-                        
-                        // Send command to shell process
-                        shellProcess.postMessage({
-                            type: 'command',
-                            command: command
-                        });
-                        
-                        // Clear input
-                        this.value = '';
-                    }
-                }
-            });
-            
-            // Focus on the input field when clicking anywhere in the terminal container
-            terminalContainer.addEventListener('click', function() {
-                if (!terminalCommand.disabled) {
-                    terminalCommand.focus();
-                }
-            });
-            
-            // Prevent focus loss when typing in the terminal
-            terminalCommand.addEventListener('blur', function() {
-                if (shellProcess) {
-                    // Small delay to allow for click events elsewhere
-                    setTimeout(() => {
-                        // Only refocus if shell is still running
-                        if (shellProcess && document.activeElement !== terminalCommand) {
-                            terminalCommand.focus();
-                        }
-                    }, 100);
-                }
-            });
-            
-            // Disable command input initially
-            terminalCommand.disabled = true;
+            // Associer l'événement au bouton
+            launchShellBtn.addEventListener('click', launchMysh);
         });
     </script>
 </body>
