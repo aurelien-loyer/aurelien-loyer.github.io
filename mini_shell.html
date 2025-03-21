@@ -473,79 +473,330 @@
             const promptContainer = document.getElementById('promptContainer');
             const commandInput = document.getElementById('commandInput');
             const prompt = document.getElementById('prompt');
-            
+
             // État du shell
             let shellRunning = false;
             let currentDirectory = "~/mysh";
-            
+            let envVariables = {
+                "HOME": "~/mysh",
+                "PATH": "/usr/local/bin:/usr/bin:/bin",
+                "USER": "user",
+                "PWD": "~/mysh",
+                "SHELL": "~/mysh/mysh"
+            };
+
+            // Structure de fichiers simulée
+            const fileSystem = {
+                "~/mysh": {
+                    type: "directory",
+                    contents: {
+                        "README.md": {
+                            type: "file",
+                            content: "# Mini Shell\n\nShell simplifié en langage C\n\n## Compilation\n\n```\nmake\n```\n\n## Utilisation\n\n```\n./mysh\n```"
+                        },
+                        "src": {
+                            type: "directory",
+                            contents: {
+                                "main.c": {
+                                    type: "file",
+                                    content: "#include \"../include/mysh.h\"\n\nint main(int argc, char **argv, char **env) {\n    // Initialize environment\n    char **env_copy = copy_environment(env);\n    \n    // Start command loop\n    run_shell(env_copy);\n    \n    // Clean up before exit\n    free_environment(env_copy);\n    return 0;\n}"
+                                },
+                                "builtins.c": {
+                                    type: "file",
+                                    content: "#include \"../include/builtins.h\"\n\nvoid builtin_cd(char **args, char **env) {\n    // Implementation of cd command\n    if (args[1] == NULL) {\n        chdir(getenv(\"HOME\"));\n    } else {\n        if (chdir(args[1]) != 0) {\n            fprintf(stderr, \"cd: %s: No such file or directory\\n\", args[1]);\n        }\n    }\n}"
+                                },
+                                "execute.c": {
+                                    type: "file",
+                                    content: "#include \"../include/mysh.h\"\n\nvoid execute_command(char *command, char **env) {\n    // Parse command\n    char **args = parse_command(command);\n    \n    // Check if builtin\n    if (is_builtin(args[0])) {\n        execute_builtin(args, env);\n        free_args(args);\n        return;\n    }\n    \n    // Fork and execute\n    pid_t pid = fork();\n    if (pid == 0) {\n        // Child process\n        execve(args[0], args, env);\n        fprintf(stderr, \"%s: Command not found\\n\", args[0]);\n        exit(1);\n    } else if (pid > 0) {\n        // Parent process\n        int status;\n        waitpid(pid, &status, 0);\n    }\n    \n    free_args(args);\n}"
+                                },
+                                "env_manager.c": {
+                                    type: "file",
+                                    content: "#include \"../include/env_manager.h\"\n\nchar **copy_environment(char **env) {\n    int count = 0;\n    while (env[count] != NULL)\n        count++;\n    \n    char **env_copy = malloc(sizeof(char *) * (count + 1));\n    for (int i = 0; i < count; i++)\n        env_copy[i] = strdup(env[i]);\n    env_copy[count] = NULL;\n    \n    return env_copy;\n}"
+                                },
+                                "utils.c": {
+                                    type: "file",
+                                    content: "#include \"../include/mysh.h\"\n\nchar **parse_command(char *command) {\n    // Tokenize command by spaces\n    int max_tokens = 64;\n    char **tokens = malloc(sizeof(char *) * max_tokens);\n    char *token = strtok(command, \" \\t\\n\");\n    int pos = 0;\n    \n    while (token != NULL && pos < max_tokens - 1) {\n        tokens[pos++] = strdup(token);\n        token = strtok(NULL, \" \\t\\n\");\n    }\n    tokens[pos] = NULL;\n    return tokens;\n}"
+                                }
+                            }
+                        },
+                        "include": {
+                            type: "directory",
+                            contents: {
+                                "mysh.h": {
+                                    type: "file",
+                                    content: "#ifndef MYSH_H\n#define MYSH_H\n\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <unistd.h>\n#include <sys/wait.h>\n\n// Shell functions\nvoid run_shell(char **env);\nvoid execute_command(char *command, char **env);\nchar **parse_command(char *command);\n\n// Builtin functions\nint is_builtin(char *command);\nvoid execute_builtin(char **args, char **env);\n\n// Environment management\nchar **copy_environment(char **env);\nvoid free_environment(char **env);\n\n// Memory management\nvoid free_args(char **args);\n\n#endif"
+                                },
+                                "builtins.h": {
+                                    type: "file",
+                                    content: "#ifndef BUILTINS_H\n#define BUILTINS_H\n\n#include \"mysh.h\"\n\n// Builtin commands\nvoid builtin_cd(char **args, char **env);\nvoid builtin_exit(char **args, char **env);\nvoid builtin_env(char **args, char **env);\nvoid builtin_setenv(char **args, char **env);\nvoid builtin_unsetenv(char **args, char **env);\n\n#endif"
+                                },
+                                "env_manager.h": {
+                                    type: "file",
+                                    content: "#ifndef ENV_MANAGER_H\n#define ENV_MANAGER_H\n\n#include \"mysh.h\"\n\n// Environment variable functions\nchar **copy_environment(char **env);\nvoid free_environment(char **env);\nchar *get_env_value(char **env, const char *name);\nvoid set_env_value(char ***env, const char *name, const char *value);\nvoid unset_env_value(char ***env, const char *name);\n\n#endif"
+                                }
+                            }
+                        },
+                        "Makefile": {
+                            type: "file",
+                            content: "NAME = mysh\nSRC = src/main.c src/builtins.c src/execute.c src/env_manager.c src/utils.c\nOBJ = $(SRC:.c=.o)\nCFLAGS = -Wall -Wextra -I./include\n\nall: $(NAME)\n\n$(NAME): $(OBJ)\n\tgcc -o $(NAME) $(OBJ)\n\nclean:\n\trm -f $(OBJ)\n\nfclean: clean\n\trm -f $(NAME)\n\nre: fclean all\n\n.PHONY: all clean fclean re"
+                        }
+                    }
+                }
+            };
+
+            // Fonctions utilitaires pour naviguer dans le système de fichiers
+            function getPath(path) {
+                if (path.startsWith("~")) {
+                    path = path.replace("~", "~/mysh");
+                }
+                return path;
+            }
+
+            function resolvePath(basePath, targetPath) {
+                if (targetPath.startsWith("/") || targetPath.startsWith("~")) {
+                    return getPath(targetPath);
+                }
+                
+                const base = basePath.split("/");
+                const parts = targetPath.split("/");
+                
+                for (const part of parts) {
+                    if (part === "..") {
+                        if (base.length > 1) base.pop();
+                    } else if (part !== "." && part !== "") {
+                        base.push(part);
+                    }
+                }
+                
+                return base.join("/");
+            }
+
+            function getFileOrDir(path) {
+                path = getPath(path);
+                const parts = path.split("/");
+                let current = fileSystem;
+                
+                for (let i = 0; i < parts.length; i++) {
+                    if (parts[i] === "" || parts[i] === "~") continue;
+                    
+                    if (!current[parts.slice(0, i+1).join("/")]) {
+                        return null;
+                    }
+                    current = current[parts.slice(0, i+1).join("/")];
+                }
+                
+                return current;
+            }
+
             // Commandes disponibles pour la simulation
             const availableCommands = {
-                "ls": () => {
-                    if (currentDirectory === "~/mysh") {
-                        return "README.md\nsrc/\ninclude/\nMakefile";
-                    } else if (currentDirectory === "~/mysh/src") {
-                        return "main.c\nbuiltins.c\nexecute.c\nenv_manager.c\nutils.c";
-                    } else if (currentDirectory === "~/mysh/include") {
-                        return "mysh.h\nbuiltins.h\nenv_manager.h";
-                    } else {
-                        return "";
+                "ls": (args) => {
+                    let path = currentDirectory;
+                    let showHidden = false;
+                    let longFormat = false;
+                    
+                    if (args) {
+                        const argsList = args.split(/\s+/);
+                        argsList.forEach(arg => {
+                            if (arg.startsWith("-")) {
+                                if (arg.includes("a")) showHidden = true;
+                                if (arg.includes("l")) longFormat = true;
+                            } else if (arg) {
+                                path = resolvePath(currentDirectory, arg);
+                            }
+                        });
                     }
+                    
+                    const dir = getFileOrDir(path);
+                    if (!dir || dir.type !== "directory") {
+                        return `ls: cannot access '${path}': No such file or directory`;
+                    }
+                    
+                    let result = [];
+                    Object.keys(dir.contents).forEach(key => {
+                        const item = dir.contents[key];
+                        if (!key.startsWith(".") || showHidden) {
+                            if (longFormat) {
+                                const permissions = item.type === "directory" ? "drwxr-xr-x" : "-rw-r--r--";
+                                const size = item.type === "file" ? Math.floor(Math.random() * 10000) : 4096;
+                                const date = new Date().toLocaleString("fr-FR", { 
+                                    month: "short", 
+                                    day: "numeric", 
+                                    hour: "2-digit", 
+                                    minute: "2-digit" 
+                                });
+                                result.push(`${permissions} 1 user user ${size.toString().padStart(5)} ${date} ${key}${item.type === "directory" ? "/" : ""}`);
+                            } else {
+                                result.push(`${key}${item.type === "directory" ? "/" : ""}`);
+                            }
+                        }
+                    });
+                    
+                    return result.join("\n");
                 },
                 "pwd": () => currentDirectory,
                 "cd": (args) => {
+                    let targetPath;
+                    
                     if (!args || args === "~") {
-                        currentDirectory = "~/mysh";
-                        prompt.textContent = `${currentDirectory} $`;
-                        return "";
-                    } else if (args === "src" && currentDirectory === "~/mysh") {
-                        currentDirectory = "~/mysh/src";
-                        prompt.textContent = `${currentDirectory} $`;
-                        return "";
-                    } else if (args === "include" && currentDirectory === "~/mysh") {
-                        currentDirectory = "~/mysh/include";
-                        prompt.textContent = `${currentDirectory} $`;
-                        return "";
-                    } else if (args === "..") {
-                        if (currentDirectory === "~/mysh/src" || currentDirectory === "~/mysh/include") {
-                            currentDirectory = "~/mysh";
-                            prompt.textContent = `${currentDirectory} $`;
-                            return "";
-                        } else {
-                            return "cd: impossible de remonter au-delà du répertoire racine";
-                        }
+                        targetPath = "~/mysh";
                     } else {
-                        return `cd: ${args}: Aucun fichier ou dossier de ce type`;
+                        targetPath = resolvePath(currentDirectory, args);
                     }
+                    
+                    const dir = getFileOrDir(targetPath);
+                    if (!dir) {
+                        return `cd: ${args}: No such file or directory`;
+                    }
+                    
+                    if (dir.type !== "directory") {
+                        return `cd: ${args}: Not a directory`;
+                    }
+                    
+                    currentDirectory = targetPath;
+                    envVariables["PWD"] = currentDirectory;
+                    prompt.textContent = `${currentDirectory} $`;
+                    return "";
                 },
                 "cat": (args) => {
-                    if (args === "README.md" && currentDirectory === "~/mysh") {
-                        return "# Mini Shell\n\nShell simplifié en langage C\n\n## Compilation\n\n```\nmake\n```\n\n## Utilisation\n\n```\n./mysh\n```";
-                    } else if (args === "main.c" && currentDirectory === "~/mysh/src") {
-                        return "#include \"../include/mysh.h\"\n\nint main(int argc, char **argv, char **env) {\n    // Initialize environment\n    char **env_copy = copy_environment(env);\n    \n    // Start command loop\n    run_shell(env_copy);\n    \n    // Clean up before exit\n    free_environment(env_copy);\n    return 0;\n}";
-                    } else if (args === "mysh.h" && currentDirectory === "~/mysh/include") {
-                        return "#ifndef MYSH_H\n#define MYSH_H\n\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include <unistd.h>\n#include <sys/wait.h>\n\n// Shell functions\nvoid run_shell(char **env);\nvoid execute_command(char *command, char **env);\n\n// Environment management\nchar **copy_environment(char **env);\nvoid free_environment(char **env);\n\n#endif";
-                    } else {
-                        return `cat: ${args}: Aucun fichier ou dossier de ce type`;
+                    if (!args) {
+                        return "cat: missing operand";
                     }
+                    
+                    const argsList = args.split(/\s+/);
+                    let result = [];
+                    
+                    for (const arg of argsList) {
+                        const path = resolvePath(currentDirectory, arg);
+                        const file = getFileOrDir(path);
+                        
+                        if (!file) {
+                            result.push(`cat: ${arg}: No such file or directory`);
+                            continue;
+                        }
+                        
+                        if (file.type !== "file") {
+                            result.push(`cat: ${arg}: Is a directory`);
+                            continue;
+                        }
+                        
+                        result.push(file.content);
+                    }
+                    
+                    return result.join("\n");
+                },
+                "echo": (args) => {
+                    if (!args) return "";
+                    
+                    // Gestion des variables d'environnement
+                    let result = args;
+                    const envVarMatches = args.match(/\$([A-Za-z_][A-Za-z0-9_]*)/g);
+                    
+                    if (envVarMatches) {
+                        envVarMatches.forEach(match => {
+                            const varName = match.substring(1);
+                            if (envVariables[varName]) {
+                                result = result.replace(match, envVariables[varName]);
+                            } else {
+                                result = result.replace(match, "");
+                            }
+                        });
+                    }
+                    
+                    return result;
+                },
+                "env": () => {
+                    let result = [];
+                    Object.keys(envVariables).forEach(key => {
+                        result.push(`${key}=${envVariables[key]}`);
+                    });
+                    return result.join("\n");
+                },
+                "setenv": (args) => {
+                    if (!args) {
+                        return availableCommands["env"]();
+                    }
+                    
+                    const parts = args.split(/\s+/);
+                    if (parts.length < 2) {
+                        return "setenv: Too few arguments.";
+                    }
+                    
+                    envVariables[parts[0]] = parts[1];
+                    return "";
+                },
+                "unsetenv": (args) => {
+                    if (!args) {
+                        return "unsetenv: Too few arguments.";
+                    }
+                    
+                    const varName = args.split(/\s+/)[0];
+                    if (envVariables[varName]) {
+                        delete envVariables[varName];
+                    }
+                    return "";
+                },
+                "make": (args) => {
+                    if (currentDirectory !== "~/mysh" && !currentDirectory.startsWith("~/mysh/")) {
+                        return "make: *** No Makefile found. Stop.";
+                    }
+                    
+                    if (!args || args === "all") {
+                        return "gcc -Wall -Wextra -I./include -c src/main.c -o src/main.o\ngcc -Wall -Wextra -I./include -c src/builtins.c -o src/builtins.o\ngcc -Wall -Wextra -I./include -c src/execute.c -o src/execute.o\ngcc -Wall -Wextra -I./include -c src/env_manager.c -o src/env_manager.o\ngcc -Wall -Wextra -I./include -c src/utils.c -o src/utils.o\ngcc -o mysh src/main.o src/builtins.o src/execute.o src/env_manager.o src/utils.o";
+                    } else if (args === "clean") {
+                        return "rm -f src/main.o src/builtins.o src/execute.o src/env_manager.o src/utils.o";
+                    } else if (args === "fclean") {
+                        return "rm -f src/main.o src/builtins.o src/execute.o src/env_manager.o src/utils.o\nrm -f mysh";
+                    } else if (args === "re") {
+                        return "rm -f src/main.o src/builtins.o src/execute.o src/env_manager.o src/utils.o\nrm -f mysh\ngcc -Wall -Wextra -I./include -c src/main.c -o src/main.o\ngcc -Wall -Wextra -I./include -c src/builtins.c -o src/builtins.o\ngcc -Wall -Wextra -I./include -c src/execute.c -o src/execute.o\ngcc -Wall -Wextra -I./include -c src/env_manager.c -o src/env_manager.o\ngcc -Wall -Wextra -I./include -c src/utils.c -o src/utils.o\ngcc -o mysh src/main.o src/builtins.o src/execute.o src/env_manager.o src/utils.o";
+                    }
+                    return `make: *** No rule to make target '${args}'. Stop.`;
                 },
                 "help": () => {
-                    return "Commandes disponibles dans cette simulation:\n- ls: Afficher le contenu du répertoire\n- pwd: Afficher le répertoire courant\n- cd [dossier]: Changer de répertoire\n- cat [fichier]: Afficher le contenu d'un fichier\n- clear: Effacer l'écran\n- exit: Quitter le Mini Shell\n- help: Afficher cette aide";
+                    return "Commandes disponibles dans cette simulation:\n- ls [-la] [dossier]: Afficher le contenu du répertoire\n- pwd: Afficher le répertoire courant\n- cd [dossier]: Changer de répertoire\n- cat [fichier]: Afficher le contenu d'un fichier\n- echo [texte]: Afficher du texte\n- env: Afficher les variables d'environnement\n- setenv [var] [valeur]: Définir une variable d'environnement\n- unsetenv [var]: Supprimer une variable d'environnement\n- make [target]: Exécuter des cibles du Makefile\n- clear: Effacer l'écran\n- history: Afficher l'historique des commandes\n- exit: Quitter le Mini Shell\n- help: Afficher cette aide";
                 },
                 "clear": () => {
                     terminalContent.textContent = "";
                     return "";
                 },
+                "history": (() => {
+                    let commandHistory = [];
+                    
+                    return () => {
+                        if (commandHistory.length === 0) {
+                            return "No commands in history";
+                        }
+                        
+                        let result = [];
+                        commandHistory.forEach((cmd, index) => {
+                            result.push(`${index + 1}  ${cmd}`);
+                        });
+                        
+                        return result.join("\n");
+                    };
+                })(),
                 "exit": () => {
                     shellRunning = false;
                     promptContainer.style.display = "none";
                     terminalContent.textContent += "\nAu revoir!\n";
                     launchShellBtn.innerHTML = '<i class="fas fa-terminal"></i> Lancer mysh';
+                    launchShellBtn.classList.remove('active');
                     return null;  // valeur spéciale pour indiquer la sortie
                 }
             };
-            
+
+            // Historique des commandes
+            let commandHistory = [];
+            let historyIndex = -1;
+
             // Fonction pour traiter les commandes
             function processCommand(commandStr) {
+                // Ajouter à l'historique si non vide
+                if (commandStr.trim() !== "") {
+                    commandHistory.push(commandStr);
+                    historyIndex = commandHistory.length;
+                }
+                
                 const parts = commandStr.trim().split(/\s+/);
                 const command = parts[0].toLowerCase();
                 const args = parts.slice(1).join(" ");
@@ -561,10 +812,52 @@
                     }
                     return result;
                 } else {
-                    return `${command}: commande introuvable`;
+                    return `${command}: command not found`;
                 }
             }
-            
+
+            // Gestion de l'historique avec les flèches
+            commandInput.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (historyIndex > 0) {
+                        historyIndex--;
+                        commandInput.value = commandHistory[historyIndex];
+                    }
+                } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (historyIndex < commandHistory.length - 1) {
+                        historyIndex++;
+                        commandInput.value = commandHistory[historyIndex];
+                    } else if (historyIndex === commandHistory.length - 1) {
+                        historyIndex = commandHistory.length;
+                        commandInput.value = "";
+                    }
+                } else if (e.key === 'Tab') {
+                    e.preventDefault();
+                    // Auto-complétion simple
+                    const input = commandInput.value;
+                    const lastWord = input.split(/\s+/).pop();
+                    
+                    if (lastWord) {
+                        // Rechercher des correspondances dans les commandes ou fichiers
+                        const currentDir = getFileOrDir(currentDirectory);
+                        if (currentDir && currentDir.type === "directory") {
+                            const matches = Object.keys(currentDir.contents).filter(name => 
+                                name.startsWith(lastWord)
+                            );
+                            
+                            if (matches.length === 1) {
+                                // Une seule correspondance, compléter
+                                const completion = matches[0];
+                                const beforeLastWord = input.substring(0, input.length - lastWord.length);
+                                commandInput.value = beforeLastWord + completion;
+                            }
+                        }
+                    }
+                }
+            });
+
             // Gestion des entrées de commandes
             commandInput.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') {
@@ -589,7 +882,7 @@
                     }
                 }
             });
-            
+
             // Fonction pour lancer l'exécutable mysh
             function launchMysh() {
                 if (shellRunning) {
@@ -615,6 +908,10 @@
                 currentDirectory = "~/mysh";
                 prompt.textContent = `${currentDirectory} $`;
                 
+                // Vider l'historique des commandes
+                commandHistory = [];
+                historyIndex = -1;
+                
                 // Afficher le prompt d'entrée
                 promptContainer.style.display = "flex";
                 commandInput.value = "";
@@ -625,10 +922,10 @@
                 launchShellBtn.classList.add('active');
                 shellRunning = true;
             }
-            
+
             // Associer l'événement au bouton
             launchShellBtn.addEventListener('click', launchMysh);
-            
+
             // Assurer que le focus reste sur l'input quand on clique dans le terminal
             document.getElementById('terminalContainer').addEventListener('click', function() {
                 if (shellRunning) {
