@@ -1698,3 +1698,170 @@
     background-color: #2a2f4a;
     border-radius: 8px 8px 0 0;
   }
+
+  /* Animation pour le curseur clignotant dans le terminal */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-input::after {
+  content: "";
+  width: 8px;
+  height: 16px;
+  background-color: #f8f8f2;
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+/* Style pour le terminal lorsqu'il est actif */
+.terminal-container.active {
+  box-shadow: 0 0 10px rgba(80, 250, 123, 0.3);
+  border: 1px solid #50fa7b;
+}
+
+/* Style pour les sorties du terminal avec meilleure lisibilité */
+.terminal-content {
+  padding: 8px;
+  font-size: 14px;
+  color: #f8f8f2;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  min-height: 280px;
+  overflow-x: auto;
+}
+
+/* Style pour les commandes de succès/erreur */
+.command-success {
+  color: #50fa7b;
+}
+
+.command-error {
+  color: #ff5555;
+}
+
+/* Style pour les différents types de contenu du terminal */
+.terminal-output-command {
+  color: #bd93f9; 
+}
+
+.terminal-output-result {
+  color: #f8f8f2;
+}
+
+.terminal-output-error {
+  color: #ff5555;
+}
+
+/* Amélioration du bouton du terminal */
+.try-it-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #50fa7b;
+  color: #1e1e1e;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.try-it-button:hover {
+  background-color: #2ebd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.try-it-button.active {
+  background-color: #ff5555;
+}
+
+.try-it-button.active:hover {
+  background-color: #e03e3e;
+}
+
+/* Animation de chargement quand le shell démarre */
+.loading-dots::after {
+  content: "";
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { content: "."; }
+  33% { content: ".."; }
+  66% { content: "..."; }
+  100% { content: "."; }
+}
+
+/* Personnalisation du scrollbar dans le terminal */
+.terminal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.terminal-content::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Adaptation pour le mode clair */
+.light-theme .terminal-container {
+  background-color: #2a2a2a;
+}
+
+.light-theme .terminal-input::after {
+  background-color: #e6e6e6;
+}
+
+.light-theme .terminal-container.active {
+  box-shadow: 0 0 10px rgba(46, 189, 90, 0.3);
+  border: 1px solid #2ebd5a;
+}
+
+/* Style pour le focus de l'input */
+.terminal-command:focus {
+  outline: none;
+  border-bottom: 1px solid #50fa7b;
+}
+
+.light-theme .terminal-command:focus {
+  border-bottom: 1px solid #2ebd5a;
+}
+
+/* Style pour l'historique des commandes */
+.command-history {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  max-height: 150px;
+  overflow-y: auto;
+  display: none;
+}
+
+.command-history.visible {
+  display: block;
+}
+
+.command-history-item {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.command-history-item:hover {
+  background-color: #444;
+}

@@ -10,6 +10,122 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="description" content="Détails du projet Mini Shell d'Aurélien Loyer, un shell simplifié en langage C.">
+    <style>
+        .terminal-container {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 20px 0;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .terminal-header {
+            background-color: #333;
+            padding: 8px 12px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: -10px -10px 10px -10px;
+        }
+        
+        .terminal-title {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .terminal-buttons {
+            display: flex;
+        }
+        
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+        
+        .button-red {
+            background-color: #ff5f56;
+        }
+        
+        .button-yellow {
+            background-color: #ffbd2e;
+        }
+        
+        .button-green {
+            background-color: #27c93f;
+        }
+        
+        .terminal-content {
+            color: #f8f8f2;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            min-height: 280px;
+        }
+        
+        .terminal-input {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .terminal-prompt {
+            color: #50fa7b;
+            margin-right: 8px;
+        }
+        
+        .terminal-command {
+            background: transparent;
+            border: none;
+            color: #f8f8f2;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            flex-grow: 1;
+            outline: none;
+        }
+
+        .light-theme .terminal-container {
+            background-color: #2a2a2a;
+        }
+        
+        .light-theme .terminal-header {
+            background-color: #444;
+        }
+        
+        .light-theme .terminal-content,
+        .light-theme .terminal-command {
+            color: #e6e6e6;
+        }
+        
+        .try-it-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #50fa7b;
+            color: #1e1e1e;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .try-it-button:hover {
+            background-color: #2ebd5a;
+        }
+        
+        .light-theme .try-it-button {
+            background-color: #2ebd5a;
+            color: #fff;
+        }
+        
+        .light-theme .try-it-button:hover {
+            background-color: #1a9043;
+        }
+    </style>
 </head>
 <body>
     <!-- Loader -->
@@ -115,35 +231,29 @@
                     <p>
                         Ce shell a été implémenté en C, en utilisant diverses fonctions système comme fork(), execve(), waitpid() pour la gestion des processus enfants. L'environnement système est géré à travers une structure de données personnalisée permettant la manipulation des variables d'environnement.
                     </p>
-                    <div class="code-snippet">
-                        <pre><code>// Exemple simplifié de la structure principale du Mini Shell
-int main(int argc, char **argv, char **env)
-{
-    char *command = NULL;
-    char **args = NULL;
-    env_t *environment = init_environment(env);
-
-    while (1) {
-        display_prompt();
-        command = read_command();
-        
-        if (command == NULL)
-            break;
-            
-        args = parse_command(command);
-        
-        if (is_builtin(args[0]))
-            execute_builtin(args, environment);
-        else
-            execute_command(args, environment);
-            
-        free_resources(command, args);
-    }
-    
-    free_environment(environment);
-    return 0;
-}</code></pre>
+                    
+                    <h3>Essayez le Mini Shell en direct!</h3>
+                    
+                    <div class="terminal-container" id="terminalContainer">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <div class="terminal-button button-red"></div>
+                                <div class="terminal-button button-yellow"></div>
+                                <div class="terminal-button button-green"></div>
+                            </div>
+                            <div class="terminal-title">Mini Shell</div>
+                            <div style="width: 50px;"></div>
+                        </div>
+                        <div class="terminal-content" id="terminalContent">Chargement de Mini Shell...</div>
+                        <div class="terminal-input">
+                            <span class="terminal-prompt">$></span>
+                            <input type="text" class="terminal-command" id="terminalCommand" placeholder="Tapez une commande..." />
+                        </div>
                     </div>
+                    
+                    <button class="try-it-button" id="launchShellBtn">
+                        <i class="fas fa-terminal"></i> Lancer Mini Shell
+                    </button>
                 </div>
 
                 <div class="project-challenges">
@@ -338,6 +448,145 @@ int main(int argc, char **argv, char **env)
                     });
                 });
             });
+            
+            // Mini Shell functionality
+            let shellProcess = null;
+            const terminalContent = document.getElementById('terminalContent');
+            const terminalCommand = document.getElementById('terminalCommand');
+            const launchShellBtn = document.getElementById('launchShellBtn');
+            
+            // Function to start the shell process
+            function startShell() {
+                terminalContent.textContent = "Démarrage de Mini Shell...\n";
+                
+                try {
+                    // Create a new Web Worker to communicate with the shell executable
+                    if (window.Worker) {
+                        // Create a worker script to handle shell communication
+                        const workerBlob = new Blob([`
+                            // This is a simulated worker for shell interaction
+                            self.addEventListener('message', function(e) {
+                                if (e.data.type === 'command') {
+                                    // Simulate sending command to shell
+                                    const command = e.data.command;
+                                    
+                                    // Mock response based on command
+                                    let response;
+                                    if (command === 'ls') {
+                                        response = "mysh\nREADME.md\nsrc/\ninclude/\nMakefile";
+                                    } else if (command === 'pwd') {
+                                        response = "/home/user/mini_shell";
+                                    } else if (command === 'echo hello') {
+                                        response = "hello";
+                                    } else if (command.startsWith('cd ')) {
+                                        response = ""; // cd usually has no output on success
+                                    } else if (command === 'help') {
+                                        response = "Commandes disponibles:\n- ls: liste les fichiers\n- pwd: affiche le répertoire courant\n- cd: change de répertoire\n- exit: quitte le shell";
+                                    } else if (command === 'exit') {
+                                        response = "Fermeture du shell...";
+                                        self.postMessage({type: 'exit'});
+                                        return;
+                                    } else {
+                                        response = \`\${command}: commande non trouvée\`;
+                                    }
+                                    
+                                    self.postMessage({
+                                        type: 'output',
+                                        output: response
+                                    });
+                                }
+                            });
+                            
+                            // Initial startup message
+                            self.postMessage({
+                                type: 'ready', 
+                                output: "Mini Shell v1.0 démarré\\nTapez 'help' pour voir les commandes disponibles\\nTapez 'exit' pour quitter"
+                            });
+                        `], {type: 'application/javascript'});
+                        
+                        const workerUrl = URL.createObjectURL(workerBlob);
+                        shellProcess = new Worker(workerUrl);
+                        
+                        shellProcess.onmessage = function(e) {
+                            if (e.data.type === 'ready' || e.data.type === 'output') {
+                                terminalContent.textContent += e.data.output + "\n";
+                                terminalContent.scrollTop = terminalContent.scrollHeight;
+                            } else if (e.data.type === 'exit') {
+                                setTimeout(() => {
+                                    stopShell();
+                                }, 1000);
+                            }
+                        };
+                        
+                        shellProcess.onerror = function(error) {
+                            terminalContent.textContent += "Erreur: " + error.message + "\n";
+                            stopShell();
+                        };
+                        
+                        // Enable command input
+                        terminalCommand.disabled = false;
+                        terminalCommand.focus();
+                        
+                        // Change button text
+                        launchShellBtn.innerHTML = '<i class="fas fa-stop"></i> Arrêter Mini Shell';
+                        launchShellBtn.classList.add('active');
+                    } else {
+                        terminalContent.textContent += "Votre navigateur ne supporte pas les Web Workers, nécessaires pour exécuter le shell.\n";
+                    }
+                } catch (error) {
+                    terminalContent.textContent += "Erreur lors du démarrage du shell: " + error.message + "\n";
+                }
+            }
+            
+            // Function to stop the shell process
+            function stopShell() {
+                if (shellProcess) {
+                    shellProcess.terminate();
+                    shellProcess = null;
+                }
+                
+                terminalContent.textContent += "Shell arrêté.\n";
+                
+                // Disable command input
+                terminalCommand.disabled = true;
+                
+                // Reset button
+                launchShellBtn.innerHTML = '<i class="fas fa-terminal"></i> Lancer Mini Shell';
+                launchShellBtn.classList.remove('active');
+            }
+            
+            // Toggle shell start/stop
+            launchShellBtn.addEventListener('click', function() {
+                if (shellProcess) {
+                    stopShell();
+                } else {
+                    startShell();
+                }
+            });
+            
+            // Handle command input
+            terminalCommand.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && shellProcess) {
+                    const command = this.value.trim();
+                    
+                    if (command) {
+                        // Display command in terminal
+                        terminalContent.textContent += "$> " + command + "\n";
+                        
+                        // Send command to shell process
+                        shellProcess.postMessage({
+                            type: 'command',
+                            command: command
+                        });
+                        
+                        // Clear input
+                        this.value = '';
+                    }
+                }
+            });
+            
+            // Disable command input initially
+            terminalCommand.disabled = true;
         });
     </script>
 </body>
