@@ -1,3 +1,3 @@
-# github.io
+# portfolio
 
-[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/aurelien-loyer/github.io)
+[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/aurelien-loyer/portfolio)
