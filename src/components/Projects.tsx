@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, Info } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Projects: React.FC = () => {
+  const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
 
   const projects = [
     {
       id: 1,
       title: 'Mini Shell',
-      description: 'Un shell simplifié capable d\'exécuter des commandes de base et gérer différents Builtin.',
+      description: t('projects.miniShell.description'),
       category: 'c',
       tags: ['C', 'Shell'],
       github: 'https://github.com/aurelien-loyer/mini_shell',
@@ -19,7 +21,7 @@ const Projects: React.FC = () => {
     {
       id: 2,
       title: 'My Radar',
-      description: 'Un simulateur de contrôle aérien utilisant la bibliothèque CSFML avec détection de collisions.',
+      description: t('projects.myRadar.description'),
       category: 'csfml',
       tags: ['C', 'CSFML', 'Graphique'],
       github: 'https://github.com/aurelien-loyer/my_radar',
@@ -29,7 +31,7 @@ const Projects: React.FC = () => {
     {
       id: 3,
       title: 'Organized',
-      description: 'Un programme pour organiser et trier des données selon des règles prédéfinies.',
+      description: t('projects.organized.description'),
       category: 'c',
       tags: ['C', 'Algorithmique'],
       github: 'https://github.com/aurelien-loyer/organized',
@@ -39,7 +41,7 @@ const Projects: React.FC = () => {
     {
       id: 4,
       title: '105demography',
-      description: 'Un projet d\'analyse démographique utilisant des données statistiques pour prédire l\'évolution de la population.',
+      description: t('projects.demography.description'),
       category: 'python',
       tags: ['Python', 'Data Analysis'],
       github: 'https://github.com/aurelien-loyer/105demography',
@@ -49,7 +51,7 @@ const Projects: React.FC = () => {
   ];
 
   const filters = [
-    { key: 'all', label: 'Tous' },
+    { key: 'all', label: t('projects.all') },
     { key: 'c', label: 'C' },
     { key: 'python', label: 'Python' },
     { key: 'csfml', label: 'CSFML' },
@@ -88,13 +90,13 @@ const Projects: React.FC = () => {
             variants={itemVariants}
             className="text-blue-600 dark:text-blue-400 font-semibold text-lg mb-2 block"
           >
-            Mon travail
+            {t('projects.work')}
           </motion.span>
           <motion.h2
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8"
           >
-            Projets récents
+            {t('projects.title')}
           </motion.h2>
 
           {/* Filter Buttons */}
@@ -195,7 +197,7 @@ const Projects: React.FC = () => {
                       href={project.details}
                       className="inline-flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
                     >
-                      <span>Voir les détails</span>
+                      <span>{t('projects.details')}</span>
                       <ExternalLink size={16} />
                     </a>
                     

@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -14,11 +17,11 @@ const Footer: React.FC = () => {
   ];
 
   const navLinks = [
-    { href: '#home', label: 'Accueil' },
-    { href: '#about', label: 'À propos' },
-    { href: '#skills', label: 'Compétences' },
-    { href: '#projects', label: 'Projets' },
-    { href: '#contact', label: 'Contact' },
+    { href: '#home', label: t('nav.home') },
+    { href: '#about', label: t('nav.about') },
+    { href: '#skills', label: t('nav.skills') },
+    { href: '#projects', label: t('nav.projects') },
+    { href: '#contact', label: t('nav.contact') },
   ];
 
   const scrollToSection = (href: string) => {
@@ -43,7 +46,7 @@ const Footer: React.FC = () => {
               AL<span className="text-blue-400">.</span>
             </div>
             <p className="text-gray-400 leading-relaxed">
-              Développeur passionné, étudiant à Epitech Réunion, spécialisé en programmation C et Python.
+              {t('footer.developer')}
             </p>
           </motion.div>
 
@@ -55,7 +58,7 @@ const Footer: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="space-y-4"
           >
-            <h3 className="text-xl font-semibold text-white">Liens rapides</h3>
+            <h3 className="text-xl font-semibold text-white">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -78,7 +81,7 @@ const Footer: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="space-y-4"
           >
-            <h3 className="text-xl font-semibold text-white">Me suivre</h3>
+            <h3 className="text-xl font-semibold text-white">{t('footer.followMe')}</h3>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
                 <motion.a
@@ -106,7 +109,7 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
             className="text-gray-400 text-center md:text-left"
           >
-            © 2025 Aurélien Loyer. Tous droits réservés.
+            {t('footer.rights')}
           </motion.p>
 
           <motion.button

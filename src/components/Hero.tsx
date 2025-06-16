@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Hero: React.FC = () => {
+  const { t } = useLanguage();
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
 
   const texts = [
-    "Étudiant à Epitech Réunion",
-    "Développeur C/Python",
-    "Passionné d'informatique"
+    t('hero.student'),
+    t('hero.developer'),
+    t('hero.passionate')
   ];
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const Hero: React.FC = () => {
     }, isTyping ? 100 : 50);
 
     return () => clearTimeout(timeout);
-  }, [currentText, currentIndex, isTyping]);
+  }, [currentText, currentIndex, isTyping, texts]);
 
   const scrollToAbout = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
@@ -74,7 +76,7 @@ const Hero: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="text-lg text-gray-600 dark:text-gray-400 font-medium"
           >
-            Bonjour, je suis
+            {t('hero.greeting')}
           </motion.p>
 
           <motion.h1
@@ -119,7 +121,7 @@ const Hero: React.FC = () => {
               onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
               className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
             >
-              Voir mes projets
+              {t('hero.viewProjects')}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -127,7 +129,7 @@ const Hero: React.FC = () => {
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="px-8 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 rounded-full font-medium hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 transition-all"
             >
-              Me contacter
+              {t('hero.contactMe')}
             </motion.button>
           </motion.div>
 
@@ -135,7 +137,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
-            className="flex items-center justify-center space-x-6"
+            className="flex items-center justify-center space-x-6 pt-8"
           >
             {socialLinks.map((social, index) => (
               <motion.a
@@ -157,7 +159,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="absolute bottom-16 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
         >
           <motion.button
             onClick={scrollToAbout}
@@ -165,7 +167,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 2, repeat: Infinity }}
             className="flex flex-col items-center space-y-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
-            <span className="text-sm">Défiler</span>
+            <span className="text-sm">{t('hero.scroll')}</span>
             <ChevronDown size={20} />
           </motion.button>
         </motion.div>
