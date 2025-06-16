@@ -1,15 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Award, Laptop, Download } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
 
 const About: React.FC = () => {
-  const { t } = useLanguage();
-  
   const stats = [
-    { icon: Code, number: '2+', label: t('about.languages') },
-    { icon: Award, number: '50+', label: t('about.projects') },
-    { icon: Laptop, number: '4+', label: t('about.technologies') },
+    { icon: Code, number: '2+', label: 'Langages maîtrisés' },
+    { icon: Award, number: '50+', label: 'Projets réalisés' },
+    { icon: Laptop, number: '4+', label: 'Technologies' },
   ];
 
   const containerVariants = {
@@ -41,13 +38,13 @@ const About: React.FC = () => {
             variants={itemVariants}
             className="text-blue-600 dark:text-blue-400 font-semibold text-lg mb-2 block"
           >
-            {t('about.discover')}
+            Découvrez
           </motion.span>
           <motion.h2
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
           >
-            {t('about.title')}
+            À propos de moi
           </motion.h2>
         </motion.div>
 
@@ -57,15 +54,15 @@ const About: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative flex justify-center"
+            className="relative"
           >
             <div className="relative">
               {/* Profile Image */}
-              <div className="w-96 h-96 mx-auto rounded-3xl shadow-2xl relative overflow-hidden">
+              <div className="w-80 h-80 mx-auto rounded-3xl shadow-2xl relative overflow-hidden">
                 <img 
                   src="https://i.ibb.co/Z6F50WGp/photo-1.jpg" 
                   alt="Aurélien Loyer"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10" />
                 <div className="absolute bottom-4 left-4 right-4">
@@ -76,7 +73,7 @@ const About: React.FC = () => {
                       </div>
                       <div>
                         <div className="text-white font-semibold">Aurélien Loyer</div>
-                        <div className="text-white/80 text-sm">{t('footer.developer').split(',')[0]}</div>
+                        <div className="text-white/80 text-sm">Développeur</div>
                       </div>
                     </div>
                   </div>
@@ -94,7 +91,7 @@ const About: React.FC = () => {
                 <div className="text-center">
                   <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">1</div>
                   <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    {t('about.yearStudy')}
+                    Année d'étude
                   </div>
                 </div>
               </motion.div>
@@ -109,15 +106,21 @@ const About: React.FC = () => {
             className="space-y-6"
           >
             <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
-              {t('about.subtitle')}
+              Étudiant en informatique à Epitech Réunion
             </h3>
             
             <div className="space-y-4 text-lg text-gray-600 dark:text-gray-300">
               <p>
-                {t('about.description1')}
+                Bonjour ! Je suis{' '}
+                <span className="text-blue-600 dark:text-blue-400 font-semibold">
+                  Aurélien Loyer
+                </span>
+                , un passionné d'informatique et de nouvelles technologies. Mon parcours à Epitech m\'a permis de développer une solide base technique et une approche méthodique de résolution de problèmes.
               </p>
               <p>
-                {t('about.description2')}
+                Je me spécialise principalement dans la programmation en{' '}
+                <span className="text-blue-600 dark:text-blue-400 font-semibold">C</span> et{' '}
+                <span className="text-blue-600 dark:text-blue-400 font-semibold">Python</span>, tout en explorant continuellement de nouveaux langages et technologies. Mon objectif est de créer des solutions logicielles élégantes et efficaces qui répondent à des besoins concrets.
               </p>
             </div>
 
@@ -161,7 +164,7 @@ const About: React.FC = () => {
                 className="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
               >
                 <Download size={20} />
-                <span>{t('about.downloadCV')}</span>
+                <span>Télécharger mon CV</span>
               </motion.a>
             </motion.div>
           </motion.div>

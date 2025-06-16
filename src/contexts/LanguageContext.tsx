@@ -109,7 +109,7 @@ const translations = {
     'about.title': 'About me',
     'about.subtitle': 'Computer Science Student at Epitech Réunion',
     'about.description1': 'Hello! I am Aurélien Loyer, passionate about computer science and new technologies. My journey at Epitech has allowed me to develop a solid technical foundation and a methodical approach to problem-solving.',
-    'about.description2': 'I specialize mainly in C and Python programming, while continuously exploring new languages and technologies. My goal is to create elegant and efficient software solutions that meet real-world needs.',
+    'about.description2': 'I specialize mainly in C and Python programming, while continuously exploring new languages and technologies. My goal is to create elegant and efficient software solutions that meet concrete needs.',
     'about.languages': 'Mastered Languages',
     'about.projects': 'Completed Projects',
     'about.technologies': 'Technologies',

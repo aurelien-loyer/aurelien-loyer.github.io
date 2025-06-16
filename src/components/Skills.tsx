@@ -11,11 +11,8 @@ import {
   FileCode,
   Container
 } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
 
 const Skills: React.FC = () => {
-  const { t } = useLanguage();
-  
   const programmingSkills = [
     { name: 'C', percentage: 70, color: 'from-blue-500 to-blue-600' },
     { name: 'Python', percentage: 20, color: 'from-green-500 to-green-600' },
@@ -32,14 +29,14 @@ const Skills: React.FC = () => {
   ];
 
   const softSkills = [
-    t('skills.teamwork'),
-    t('skills.problemSolving'),
-    t('skills.communication'),
-    t('skills.adaptability'),
-    t('skills.autonomy'),
-    t('skills.timeManagement'),
-    t('skills.creativity'),
-    t('skills.criticalThinking'),
+    'Travail d\'équipe',
+    'Résolution de problèmes',
+    'Communication',
+    'Adaptabilité',
+    'Autonomie',
+    'Gestion du temps',
+    'Créativité',
+    'Esprit critique',
   ];
 
   const containerVariants = {
@@ -71,13 +68,13 @@ const Skills: React.FC = () => {
             variants={itemVariants}
             className="text-blue-600 dark:text-blue-400 font-semibold text-lg mb-2 block"
           >
-            {t('skills.assets')}
+            Mes atouts
           </motion.span>
           <motion.h2
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
           >
-            {t('skills.title')}
+            Compétences
           </motion.h2>
         </motion.div>
 
@@ -94,7 +91,7 @@ const Skills: React.FC = () => {
                 <Code className="text-white" size={24} />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                {t('skills.programming')}
+                Langages de programmation
               </h3>
             </div>
 
@@ -144,7 +141,7 @@ const Skills: React.FC = () => {
                 <Settings className="text-white" size={24} />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                {t('skills.tools')}
+                Outils et Technologies
               </h3>
             </div>
 
@@ -181,7 +178,7 @@ const Skills: React.FC = () => {
                 <Brain className="text-white" size={24} />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                {t('skills.soft')}
+                Soft Skills
               </h3>
             </div>
 

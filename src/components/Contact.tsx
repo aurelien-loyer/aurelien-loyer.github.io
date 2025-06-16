@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, Linkedin, Github, Send, CheckCircle } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
 
 const Contact: React.FC = () => {
-  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,7 +22,7 @@ const Contact: React.FC = () => {
     },
     {
       icon: Phone,
-      title: t('contact.phone') || 'Téléphone',
+      title: 'Téléphone',
       content: '0692 01 02 93',
       href: 'tel:+262692010293',
       color: 'from-green-500 to-green-600',
@@ -96,13 +94,13 @@ const Contact: React.FC = () => {
             variants={itemVariants}
             className="text-blue-600 dark:text-blue-400 font-semibold text-lg mb-2 block"
           >
-            {t('contact.writeMe')}
+            Écrivez-moi
           </motion.span>
           <motion.h2
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
           >
-            {t('contact.title')}
+            Contact
           </motion.h2>
         </motion.div>
 
@@ -117,10 +115,10 @@ const Contact: React.FC = () => {
           >
             <div>
               <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                {t('contact.coordinates')}
+                Mes coordonnées
               </h3>
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-                {t('contact.description')}
+                Vous pouvez me contacter par l'un des moyens suivants ou en utilisant le formulaire ci-contre.
               </p>
             </div>
 
@@ -163,14 +161,14 @@ const Contact: React.FC = () => {
             className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 shadow-lg"
           >
             <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-              {t('contact.sendMessage')}
+              Envoyez-moi un message
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {t('contact.name')}
+                    Nom
                   </label>
                   <input
                     type="text"
@@ -180,12 +178,12 @@ const Contact: React.FC = () => {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900 dark:text-white"
-                    placeholder={t('contact.namePlaceholder')}
+                    placeholder="Votre nom"
                   />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {t('contact.email')}
+                    Email
                   </label>
                   <input
                     type="email"
@@ -195,14 +193,14 @@ const Contact: React.FC = () => {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900 dark:text-white"
-                    placeholder={t('contact.emailPlaceholder')}
+                    placeholder="Votre email"
                   />
                 </div>
               </div>
 
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  {t('contact.subject')}
+                  Sujet
                 </label>
                 <input
                   type="text"
@@ -212,13 +210,13 @@ const Contact: React.FC = () => {
                   onChange={handleInputChange}
                   required
                   className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900 dark:text-white"
-                  placeholder={t('contact.subjectPlaceholder')}
+                  placeholder="Sujet du message"
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  {t('contact.message')}
+                  Message
                 </label>
                 <textarea
                   id="message"
@@ -228,7 +226,7 @@ const Contact: React.FC = () => {
                   required
                   rows={5}
                   className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900 dark:text-white resize-none"
-                  placeholder={t('contact.messagePlaceholder')}
+                  placeholder="Votre message"
                 />
               </div>
 
@@ -248,7 +246,7 @@ const Contact: React.FC = () => {
                 {isSubmitted ? (
                   <>
                     <CheckCircle size={20} />
-                    <span>{t('contact.sent')}</span>
+                    <span>Message envoyé !</span>
                   </>
                 ) : isSubmitting ? (
                   <>
@@ -257,12 +255,12 @@ const Contact: React.FC = () => {
                       transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                       className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
                     />
-                    <span>{t('contact.sending')}</span>
+                    <span>Envoi en cours...</span>
                   </>
                 ) : (
                   <>
                     <Send size={20} />
-                    <span>{t('contact.send')}</span>
+                    <span>Envoyer le message</span>
                   </>
                 )}
               </motion.button>
