@@ -51,7 +51,7 @@ const About: React.FC = () => {
           </motion.h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -60,40 +60,40 @@ const About: React.FC = () => {
             className="relative flex justify-center"
           >
             <div className="relative">
-              {/* Profile Image */}
-              <div className="w-96 h-96 mx-auto rounded-3xl shadow-2xl relative overflow-hidden">
+              {/* Profile Image - Made larger */}
+              <div className="w-[450px] h-[450px] mx-auto rounded-3xl shadow-2xl relative overflow-hidden">
                 <img 
                   src="https://i.ibb.co/Z6F50WGp/photo-1.jpg" 
                   alt="Aurélien Loyer"
                   className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="bg-white/10 backdrop-blur-md rounded-xl p-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                        <Code className="text-white" size={24} />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center">
+                        <Code className="text-white" size={28} />
                       </div>
                       <div>
-                        <div className="text-white font-semibold">Aurélien Loyer</div>
-                        <div className="text-white/80 text-sm">{t('footer.developer').split(',')[0]}</div>
+                        <div className="text-white font-semibold text-lg">Aurélien Loyer</div>
+                        <div className="text-white/80 text-base">{t('footer.developer').split(',')[0]}</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Experience Card */}
+              {/* Experience Card - Adjusted position for larger image */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="absolute -bottom-6 -right-6 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 border-4 border-blue-100 dark:border-blue-900"
+                className="absolute -bottom-8 -right-8 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8 border-4 border-blue-100 dark:border-blue-900"
               >
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">1</div>
-                  <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  <div className="text-4xl font-bold text-blue-600 dark:text-blue-400">1</div>
+                  <div className="text-base font-medium text-gray-600 dark:text-gray-400">
                     {t('about.yearStudy')}
                   </div>
                 </div>
@@ -106,13 +106,13 @@ const About: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-8"
           >
             <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
               {t('about.subtitle')}
             </h3>
             
-            <div className="space-y-4 text-lg text-gray-600 dark:text-gray-300">
+            <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
               <p>
                 {t('about.description1')}
               </p>

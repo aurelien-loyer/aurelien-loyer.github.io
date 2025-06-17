@@ -113,7 +113,7 @@ const Projects: React.FC = () => {
                 className={`px-6 py-3 rounded-full font-medium transition-all ${
                   activeFilter === filter.key
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                    : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+                    : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 shadow-md hover:shadow-lg'
                 }`}
               >
                 {filter.label}

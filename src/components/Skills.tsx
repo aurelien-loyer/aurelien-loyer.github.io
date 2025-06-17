@@ -87,7 +87,7 @@ const Skills: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 shadow-lg"
+            className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow"
           >
             <div className="flex items-center space-x-3 mb-8">
               <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl">
@@ -137,7 +137,7 @@ const Skills: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 shadow-lg"
+            className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow"
           >
             <div className="flex items-center space-x-3 mb-8">
               <div className="p-3 bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl">
@@ -174,7 +174,7 @@ const Skills: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 shadow-lg"
+            className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow"
           >
             <div className="flex items-center space-x-3 mb-8">
               <div className="p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl">

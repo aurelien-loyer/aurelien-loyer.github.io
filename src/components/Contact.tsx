@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
     },
     {
       icon: Phone,
-      title: 'Téléphone',
+      title: t('contact.phone') || 'Téléphone',
       content: '0692 01 02 93',
       href: 'tel:+262692010293',
       color: 'from-green-500 to-green-600',
@@ -160,7 +160,7 @@ const Contact: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 shadow-lg"
+            className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow"
           >
             <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
               {t('contact.sendMessage')}
