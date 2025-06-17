@@ -24,7 +24,6 @@ const Projects: React.FC = () => {
       category: 'csfml',
       tags: ['C', 'CSFML', 'Graphique'],
       github: 'https://github.com/aurelien-loyer/my_radar',
-      details: '#',
       gradient: 'from-purple-500 to-pink-500',
     },
     {
@@ -34,7 +33,6 @@ const Projects: React.FC = () => {
       category: 'python',
       tags: ['Python', 'Data analysis', 'Jupiter Notebook'],
       github: 'https://github.com/aurelien-loyer/Tardis',
-      details: '#',
       gradient: 'from-green-500 to-teal-500',
     },
     {
@@ -44,7 +42,6 @@ const Projects: React.FC = () => {
       category: 'python',
       tags: ['Python', 'Data Analysis'],
       github: 'https://github.com/aurelien-loyer/105demography',
-      details: '#',
       gradient: 'from-orange-500 to-red-500',
     },
   ];
