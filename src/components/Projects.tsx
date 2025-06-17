@@ -31,7 +31,7 @@ const Projects: React.FC = () => {
       title: 'Tardis',
       description: t('projects.organized.description'),
       category: 'python',
-      tags: ['Python', 'Data analysis', 'Jupiter Notebook'],
+      tags: ['Python', 'Data Analysis', 'Jupiter Notebook'],
       github: 'https://github.com/aurelien-loyer/Tardis',
       gradient: 'from-green-500 to-teal-500',
     },

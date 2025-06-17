@@ -79,6 +79,7 @@ const translations = {
     'contact.send': 'Envoyer le message',
     'contact.sending': 'Envoi en cours...',
     'contact.sent': 'Message envoyé !',
+    'contactInfo[1].title': 'Téléphone',
     
     // Footer
     'footer.developer': 'Développeur passionné, étudiant à Epitech Réunion, spécialisé en programmation C et Python.',
@@ -158,6 +159,7 @@ const translations = {
     'contact.send': 'Send message',
     'contact.sending': 'Sending...',
     'contact.sent': 'Message sent!',
+    'contactInfo[1].title': 'Phone',
     
     // Footer
     'footer.developer': 'Passionate developer, student at Epitech Réunion, specialized in C and Python programming.',

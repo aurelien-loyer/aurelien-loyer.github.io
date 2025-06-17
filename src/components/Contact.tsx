@@ -24,7 +24,6 @@ const Contact: React.FC = () => {
     },
     {
       icon: Phone,
-      title: 'Téléphone',
       content: '0692 01 02 93',
       href: 'tel:+262692010293',
       color: 'from-green-500 to-green-600',
