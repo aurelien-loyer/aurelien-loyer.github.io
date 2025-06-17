@@ -57,9 +57,9 @@ const translations = {
     'projects.title': 'Projets récents',
     'projects.all': 'Tous',
     'projects.details': 'Voir les détails',
-    'projects.miniShell.description': 'Un shell simplifié capable d\'exécuter des commandes de base et gérer différents Builtin.',
+    'projects.miniShell.description': '42sh est un shell Unix écrit en C, inspiré de TCSH, avec prise en charge du contrôle des tâches, du globbing, des variables et de l’historique. Conçu pour la collaboration avec Git et Makefile.',
     'projects.myRadar.description': 'Un simulateur de contrôle aérien utilisant la bibliothèque CSFML avec détection de collisions.',
-    'projects.organized.description': 'Un programme pour organiser et trier des données selon des règles prédéfinies.',
+    'projects.organized.description': 'Prédiction des retards de trains SNCF à partir de données historiques. Analyse de données, modélisation et tableau de bord interactif avec Python & Streamlit.',
     'projects.demography.description': 'Un projet d\'analyse démographique utilisant des données statistiques pour prédire l\'évolution de la population.',
     
     // Contact Section
@@ -109,7 +109,7 @@ const translations = {
     'about.title': 'About me',
     'about.subtitle': 'Computer Science Student at Epitech Réunion',
     'about.description1': 'Hello! I am Aurélien Loyer, passionate about computer science and new technologies. My journey at Epitech has allowed me to develop a solid technical foundation and a methodical approach to problem-solving.',
-    'about.description2': 'I specialize mainly in C and Python programming, while continuously exploring new languages and technologies. My goal is to create elegant and efficient software solutions that meet real-world needs.',
+    'about.description2': 'I specialize mainly in C and Python programming, while continuously exploring new languages and technologies. My goal is to create elegant and efficient software solutions that meet concrete needs.',
     'about.languages': 'Mastered Languages',
     'about.projects': 'Completed Projects',
     'about.technologies': 'Technologies',
@@ -136,9 +136,9 @@ const translations = {
     'projects.title': 'Recent Projects',
     'projects.all': 'All',
     'projects.details': 'View details',
-    'projects.miniShell.description': 'A simplified shell capable of executing basic commands and managing different Builtins.',
+    'projects.miniShell.description': '42sh is a Unix shell in C, inspired by TCSH, with job control, globbing, variables, and history support. Built for collaboration with Git and Makefile.',
     'projects.myRadar.description': 'An air traffic control simulator using the CSFML library with collision detection.',
-    'projects.organized.description': 'A program to organize and sort data according to predefined rules.',
+    'projects.organized.description': 'Predicting SNCF train delays using historical data. Data analysis, modeling, and interactive dashboard with Python & Streamlit.',
     'projects.demography.description': 'A demographic analysis project using statistical data to predict population evolution.',
     
     // Contact Section

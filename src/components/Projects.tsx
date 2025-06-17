@@ -10,11 +10,11 @@ const Projects: React.FC = () => {
   const projects = [
     {
       id: 1,
-      title: 'Mini Shell',
+      title: '42sh',
       description: t('projects.miniShell.description'),
       category: 'c',
       tags: ['C', 'Shell'],
-      github: 'https://github.com/aurelien-loyer/mini_shell',
+      github: 'https://github.com/aurelien-loyer/42sh',
       details: '#',
       gradient: 'from-blue-500 to-cyan-500',
     },
@@ -30,11 +30,11 @@ const Projects: React.FC = () => {
     },
     {
       id: 3,
-      title: 'Organized',
+      title: 'Tardis',
       description: t('projects.organized.description'),
       category: 'c',
       tags: ['C', 'Algorithmique'],
-      github: 'https://github.com/aurelien-loyer/organized',
+      github: 'https://github.com/aurelien-loyer/Tardis',
       details: '#',
       gradient: 'from-green-500 to-teal-500',
     },
