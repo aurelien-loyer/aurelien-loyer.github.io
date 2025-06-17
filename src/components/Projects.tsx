@@ -15,7 +15,6 @@ const Projects: React.FC = () => {
       category: 'c',
       tags: ['C', 'Shell'],
       github: 'https://github.com/aurelien-loyer/42sh',
-      details: '#',
       gradient: 'from-blue-500 to-cyan-500',
     },
     {
@@ -32,8 +31,8 @@ const Projects: React.FC = () => {
       id: 3,
       title: 'Tardis',
       description: t('projects.organized.description'),
-      category: 'c',
-      tags: ['C', 'Algorithmique'],
+      category: 'python',
+      tags: ['Python', 'Data analysis', 'Jupiter Notebook'],
       github: 'https://github.com/aurelien-loyer/Tardis',
       details: '#',
       gradient: 'from-green-500 to-teal-500',
